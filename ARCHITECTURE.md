@@ -25,10 +25,10 @@ Core Concepts
   - Choice-based effects: adjust powers, trigger follow-ups, apply boosters
   - Can be part of a story
 
-- Powers:
-  - Numeric values (default 0–100)
-  - Game over when out of bounds (unless modified)
-  - Boosters can temporarily override cap
++ Powers:
++  - Numeric values with per-power bounds (default 0–100 if not specified in game.yaml)
++  - Game over when out of bounds (using configured bounds, unless modified)
++  - Boosters can temporarily override cap
 
 - Boosters:
   - Active for N rounds
@@ -66,13 +66,28 @@ Each game is a folder under `/games/`. Example:
   name: "Pirate Adventure"
   entry_card: intro_card
   powers:
-    - morale
-    - gold
-    - hull
+    # Each power can be defined as a string (name) or an object with name, min, and max values.
+    - name: morale
+      min: 0
+      max: 100
+    - name: gold
+      min: 0
+      max: 100
+    - name: hull
+      min: 0
+      max: 100
   load:
-    cards: "cards/*.yaml"
-    boosters: "boosters/*.yaml"
-    stories: "stories/*.yaml"
+    # Each entry must be an explicit list of YAML files (manifest) maintained by the game author.
+    cards:
+      - "cards/intro_card.yaml"
+      - "cards/blacksmith_offer.yaml"
+      - "cards/..."
+    boosters:
+      - "boosters/golden_chalice.yaml"
+      - "boosters/..."
+    stories:
+      - "stories/royal_wedding.yaml"
+      - "stories/..."
   assets:
     base_path: "assets/images/"
 
