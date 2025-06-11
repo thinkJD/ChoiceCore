@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChoiceCore</title>
+  <style>
+    body { font-family: "Times New Roman", serif; margin: 2rem; background: #006400; }
+    #card-container {
+      max-width: 400px;
+      margin: auto;
+      border: 2px solid #000;
+      border-radius: 8px;
+      background: #fff;
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .card-description {
+      font-size: 1.1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    img.card-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .choices {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+    }
+    .choices button {
+      width: 45%;
+      height: 3rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    #powers {
+      margin-top: 1rem;
+      text-align: left;
+    }
+    .power-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .power-icon {
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+    .power-bar-bg {
+      flex: 1;
+      background: #ddd;
+      height: 1rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .power-bar-fill {
+      background: #2196F3;
+      height: 100%;
+      width: 0%;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-root">
+    <div id="card-container"></div>
+    <div class="choices">
+      <button id="left-choice"></button>
+      <button id="right-choice"></button>
+    </div>
+    <div id="powers"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

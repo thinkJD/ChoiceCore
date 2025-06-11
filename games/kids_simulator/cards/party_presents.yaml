@@ -1,0 +1,12 @@
+id: party_presents
+description: "Wählen Sie das Hauptgeschenk zum Geburtstag."
+left:
+  label: "Ein schönes Spielzeug kaufen"
+  effects:
+    - parent_money: -40
+    - kids_happiness: +20
+right:
+  label: "Lehrreiche Bücher schenken"
+  effects:
+    - parent_money: -20
+    - kids_happiness: +10

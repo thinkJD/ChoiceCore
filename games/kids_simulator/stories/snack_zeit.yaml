@@ -1,0 +1,9 @@
+id: snack_zeit
+title: "Snack-Zeit"
+description: "Zeit für einen Snack! Wähle, was dein Kind essen soll."
+trigger:
+  after_cards: 4
+cards:
+  - chore_time
+  - sick_day
+insert_window: 2

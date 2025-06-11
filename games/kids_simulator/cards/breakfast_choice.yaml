@@ -1,0 +1,12 @@
+id: breakfast_choice
+description: "Was soll Ihr Kind zum Frühstück essen?"
+left:
+  label: "Gesundes Müsli"
+  effects:
+    - kids_health: +5
+    - kids_happiness: +5
+right:
+  label: "Zuckerwaffeln"
+  effects:
+    - kids_health: -5
+    - kids_happiness: +10

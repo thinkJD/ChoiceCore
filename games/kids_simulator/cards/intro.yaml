@@ -1,0 +1,12 @@
+id: intro
+description: "Ihr Kind wacht hellwach und früh auf, bereit für einen Tag voller Abenteuer (und Chaos)."
+left:
+  label: "Frühstück machen"
+  effects:
+    - parent_money: -10
+    - kids_happiness: +5
+right:
+  label: "Sie länger schlafen lassen"
+  effects:
+    - parent_mental_health: +5
+    - kids_happiness: -5

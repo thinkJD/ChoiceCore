@@ -1,0 +1,36 @@
+name: "Kindersimulator"
+entry_card: intro
+powers:
+  - name: parent_money
+    min: 0
+    max: 500
+  - name: kids_happiness
+    min: 0
+    max: 100
+  - name: parent_mental_health
+    min: 0
+    max: 100
+  - name: kids_health
+    min: 0
+    max: 100
+load:
+  cards:
+    - "cards/intro.yaml"
+    - "cards/pet_snake_request.yaml"
+    - "cards/snake_encounter.yaml"
+    - "cards/chore_time.yaml"
+    - "cards/sick_day.yaml"
+    - "cards/party_location.yaml"
+    - "cards/party_presents.yaml"
+    - "cards/breakfast_choice.yaml"
+    - "cards/school_dropoff.yaml"
+    - "cards/bedtime_reading.yaml"
+    - "cards/tuck_in.yaml"
+  boosters: []
+  stories:
+    - "stories/morning_routine.yaml"
+    - "stories/kid_birthday.yaml"
+    - "stories/snack_zeit.yaml"
+    - "stories/bed_time.yaml"
+assets:
+  base_path: "assets/images/"

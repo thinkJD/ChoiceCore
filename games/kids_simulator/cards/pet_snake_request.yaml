@@ -1,0 +1,13 @@
+id: pet_snake_request
+description: "Ihr Kind bittet um eine Haustierschlange. Ein schlüpfriger, schuppiger Begleiter."
+left:
+  label: "Klar, warum nicht?"
+  effects:
+    - parent_money: -50
+    - kids_happiness: +20
+    - parent_mental_health: -10
+  follow_up: snake_encounter
+right:
+  label: "Auf keinen Fall!"
+  effects:
+    - kids_happiness: -10

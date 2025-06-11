@@ -1,0 +1,12 @@
+id: chore_time
+description: "Zeit für Hausarbeiten. Kann freundliches Miteinander oder Desaster bedeuten."
+left:
+  label: "Hilfsbereit mithelfen"
+  effects:
+    - kids_happiness: -5
+    - parent_mental_health: +5
+right:
+  label: "Ablehnen und spielen"
+  effects:
+    - kids_happiness: +5
+    - parent_mental_health: -5
