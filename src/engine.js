@@ -20,6 +20,15 @@ export class Engine {
     if (this.config.entry_card) {
       this.deck = this.deck.filter(id => id !== this.config.entry_card);
     }
+    
+    // Remove story cards from main deck - they'll be injected by stories
+    const storyCardIds = new Set();
+    this.config.stories.forEach(story => {
+      if (story.cards) {
+        story.cards.forEach(cardId => storyCardIds.add(cardId));
+      }
+    });
+    this.deck = this.deck.filter(id => !storyCardIds.has(id));
     this.shuffleDeck();
     this.history = [];
     // Story tracking: triggered and completed stories by id

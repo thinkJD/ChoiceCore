@@ -1,0 +1,15 @@
+id: taschengeld_diskussion
+image: placeholder.svg
+description: "Ihr Kind findet sein Taschengeld von 5€ pro Woche viel zu wenig. Alle Freunde bekommen mehr Geld und können sich coole Sachen kaufen."
+left:
+  label: "Taschengeld auf 10€ erhöhen"
+  effects:
+    - geld: -20
+    - kinder_glueck: +25
+    - eltern_nerven: +5
+right:
+  label: "Bei 5€ bleiben und Wert des Geldes erklären"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -10
+    - kinder_gesundheit: +5

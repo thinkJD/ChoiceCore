@@ -1,0 +1,10 @@
+id: krankes_kind
+title: "Krankes Kind"
+description: "Wenn das Kind krank ist, müssen Eltern schwierige Entscheidungen zwischen Arbeit und Familie treffen."
+trigger:
+  after_cards: 8
+  requires_story_completed: ["morgen_routine"]
+cards:
+  - krank_kind
+  - smartphone_bitte
+insert_window: 3

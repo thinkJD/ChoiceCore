@@ -1,0 +1,13 @@
+id: intro
+image: placeholder.svg
+description: "Willkommen zum Eltern-Simulator! Sie sind Eltern eines 8-jährigen Kindes und müssen täglich schwierige Entscheidungen treffen. Balancieren Sie Geld, Kinderglück, Ihre Nerven und die Kindergesundheit."
+left:
+  label: "Ich bin bereit für diese Herausforderung!"
+  effects:
+    - eltern_nerven: +15
+    - kinder_glueck: +10
+right:
+  label: "Hoffentlich schaffe ich das..."
+  effects:
+    - eltern_nerven: -10
+    - geld: +20

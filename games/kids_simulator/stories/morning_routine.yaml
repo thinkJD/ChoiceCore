@@ -1,9 +1,0 @@
-id: morning_routine
-title: "Morgenroutine"
-description: "Starten Sie den Tag mit Frühstück und Schule."
-trigger:
-  after_cards: 1
-cards:
-  - breakfast_choice
-  - school_dropoff
-insert_window: 2

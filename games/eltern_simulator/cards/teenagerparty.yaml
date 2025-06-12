@@ -1,0 +1,15 @@
+id: teenagerparty
+image: placeholder.svg
+description: "Ihr Kind fragt, ob es zu einer Teenagerparty darf. Sie wissen, dass dort Alkohol getrunken wird und die Eltern nicht da sind. Alle anderen dürfen auch hin."
+left:
+  label: "Nein, das ist zu riskant"
+  effects:
+    - kinder_glueck: -25
+    - eltern_nerven: +10
+    - kinder_gesundheit: +15
+right:
+  label: "Ja, aber mit klaren Regeln"
+  effects:
+    - kinder_glueck: +20
+    - eltern_nerven: -25
+    - kinder_gesundheit: -10

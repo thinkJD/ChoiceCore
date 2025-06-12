@@ -1,0 +1,15 @@
+id: fernsehen_streit
+image: placeholder.svg
+description: "Ihr Kind möchte eine Sendung schauen, die eigentlich ab 12 Jahren freigegeben ist. 'Alle anderen dürfen das auch schauen und ich bin schon fast 9!'"
+left:
+  label: "Ausnahme machen - ist ja nur diesmal"
+  effects:
+    - kinder_glueck: +20
+    - eltern_nerven: +5
+    - kinder_gesundheit: -10
+right:
+  label: "Bei der Altersfreigabe bleiben"
+  effects:
+    - kinder_glueck: -15
+    - eltern_nerven: -10
+    - kinder_gesundheit: +15

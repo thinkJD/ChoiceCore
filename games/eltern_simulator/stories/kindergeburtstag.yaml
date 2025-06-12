@@ -1,0 +1,10 @@
+id: kindergeburtstag
+title: "Kindergeburtstag"
+description: "Die Planung und Durchführung einer Geburtstagsfeier bringt viele Entscheidungen mit sich."
+trigger:
+  after_cards: 5
+cards:
+  - geburtstag_planung
+  - party_ort
+  - geschenke_dilemma
+insert_window: 2

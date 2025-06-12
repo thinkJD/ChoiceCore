@@ -1,0 +1,15 @@
+id: hausarbeit_verweigerung
+image: placeholder.svg
+description: "Seit Wochen weigert sich Ihr Kind, bei der Hausarbeit zu helfen. 'Das machen doch die Erwachsenen!' ist die Standardantwort auf jede Bitte."
+left:
+  label: "Belohnungssystem mit Taschengeld einführen"
+  effects:
+    - geld: -30
+    - kinder_glueck: +15
+    - eltern_nerven: +10
+right:
+  label: "Konsequent bleiben ohne Belohnung"
+  effects:
+    - eltern_nerven: -20
+    - kinder_glueck: -5
+    - kinder_gesundheit: +10

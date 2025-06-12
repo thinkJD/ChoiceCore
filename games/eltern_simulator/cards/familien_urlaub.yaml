@@ -1,0 +1,16 @@
+id: familien_urlaub
+image: placeholder.svg
+description: "Die Sommerferien stehen vor der Tür. Ihr Kind träumt von einem teuren Urlaub in Disney World, aber das Familienbugdet ist knapp und Sie brauchen eine neue Waschmaschine."
+left:
+  label: "Disney World - Träume sollte man erfüllen"
+  effects:
+    - geld: -300
+    - kinder_glueck: +40
+    - eltern_nerven: -20
+right:
+  label: "Camping am See - günstig und entspannt"
+  effects:
+    - geld: -50
+    - kinder_glueck: +15
+    - eltern_nerven: +15
+    - kinder_gesundheit: +10

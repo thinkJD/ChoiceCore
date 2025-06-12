@@ -1,0 +1,11 @@
+id: teenager_krise
+title: "Teenager-Krise"
+description: "Eine schwierige Phase mit Mobbing, Parties und Internetsucht fordert alle Beteiligten."
+trigger:
+  after_cards: 10
+  requires_story_completed: ["kindergeburtstag"]
+cards:
+  - mobbing_schule
+  - internet_sucht
+  - teenagerparty
+insert_window: 3

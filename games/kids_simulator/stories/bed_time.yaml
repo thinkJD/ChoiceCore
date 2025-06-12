@@ -1,9 +1,0 @@
-id: bed_time
-title: "Gute Nacht Routine"
-description: "Zeit fürs Bett! Wie endet der Tag?"
-trigger:
-  after_cards: 6
-cards:
-  - bedtime_reading
-  - tuck_in
-insert_window: 2

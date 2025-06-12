@@ -1,0 +1,9 @@
+id: schlangen_abenteuer
+title: "Das Schlangen-Abenteuer"
+description: "Eine Geschichte über den Wunsch nach einem ungewöhnlichen Haustier und die Konsequenzen."
+trigger:
+  after_cards: 2
+cards:
+  - schlange_wunsch
+  - schlangen_begegnung
+insert_window: 3

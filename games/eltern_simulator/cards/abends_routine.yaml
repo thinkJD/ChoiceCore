@@ -1,0 +1,15 @@
+id: abends_routine
+image: placeholder.svg
+description: "20:30 Uhr - Schlafenszeit! Aber Ihr Kind möchte 'nur noch diese eine Folge' schauen. Morgen ist Schule."
+left:
+  label: "Ausnahmsweise noch eine Folge"
+  effects:
+    - kinder_glueck: +15
+    - eltern_nerven: +5
+    - kinder_gesundheit: -10
+right:
+  label: "Nein, jetzt ist Schlafenszeit!"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -15
+    - kinder_gesundheit: +15

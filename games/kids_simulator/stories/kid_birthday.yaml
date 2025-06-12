@@ -1,9 +1,0 @@
-id: kid_birthday
-title: "Kindergeburtstag"
-description: "Der Geburtstag Ihres Kindes ist da! Planen Sie die Feier sorgfältig."
-trigger:
-  after_cards: 3
-cards:
-  - party_location
-  - party_presents
-insert_window: 2

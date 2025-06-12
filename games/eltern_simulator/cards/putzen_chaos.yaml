@@ -1,0 +1,15 @@
+id: putzen_chaos
+image: placeholder.svg
+description: "Samstag ist Putztag! Das Kinderzimmer sieht aus wie ein Schlachtfeld. Ihr Kind hat 'keine Lust' aufzuräumen."
+left:
+  label: "Zusammen aufräumen - Teamwork!"
+  effects:
+    - eltern_nerven: -10
+    - kinder_glueck: +10
+    - kinder_gesundheit: +5
+right:
+  label: "Putzkraft engagieren für heute"
+  effects:
+    - geld: -60
+    - eltern_nerven: +15
+    - kinder_glueck: +5

@@ -32,6 +32,9 @@ async function main() {
 
   function step(direction) {
     engine.choose(card, direction);
+    console.log(`Cards played: ${engine.history.length}`);
+    console.log(`Triggered stories: ${Array.from(engine.triggeredStories)}`);
+    console.log(`Completed stories: ${Array.from(engine.completedStories)}`);
     if (engine.isGameOver()) {
       renderGameOver();
       return;

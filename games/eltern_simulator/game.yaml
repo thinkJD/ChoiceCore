@@ -1,0 +1,48 @@
+name: "Eltern Simulator"
+entry_card: intro
+powers:
+  - name: geld
+    min: 0
+    max: 500
+  - name: kinder_glueck
+    min: 0
+    max: 100
+  - name: eltern_nerven
+    min: 0
+    max: 100
+  - name: kinder_gesundheit
+    min: 0
+    max: 100
+load:
+  cards:
+    - "cards/intro.yaml"
+    - "cards/krank_kind.yaml"
+    - "cards/putzen_chaos.yaml"
+    - "cards/abends_routine.yaml"
+    - "cards/familien_urlaub.yaml"
+    - "cards/schlechte_noten.yaml"
+    - "cards/spielzeit_streit.yaml"
+    - "cards/taschengeld_diskussion.yaml"
+    - "cards/hausarbeit_verweigerung.yaml"
+    - "cards/fernsehen_streit.yaml"
+    - "cards/smartphone_bitte.yaml"
+    - "cards/internet_sucht.yaml"
+    - "cards/mobbing_schule.yaml"
+    - "cards/teenagerparty.yaml"
+    # Story cards loaded separately - don't include in main deck
+    - "cards/morgen_stress.yaml"
+    - "cards/hausaufgaben_drama.yaml"
+    - "cards/schlange_wunsch.yaml"
+    - "cards/schlangen_begegnung.yaml"
+    - "cards/geburtstag_planung.yaml"
+    - "cards/party_ort.yaml"
+    - "cards/geschenke_dilemma.yaml"
+  boosters: []
+  stories:
+    - "stories/schlangen_abenteuer.yaml"
+    - "stories/kindergeburtstag.yaml"
+    - "stories/morgen_routine.yaml"
+    - "stories/krankes_kind.yaml"
+    - "stories/teenager_krise.yaml"
+assets:
+  base_path: "assets/images/"

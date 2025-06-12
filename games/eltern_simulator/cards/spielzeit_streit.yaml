@@ -1,0 +1,15 @@
+id: spielzeit_streit
+image: placeholder.svg
+description: "Ihr Kind streitet sich ständig mit Freunden beim Spielen. Heute kam es weinend nach Hause, weil es beim Fußball nicht mitspielen durfte."
+left:
+  label: "Mit anderen Eltern sprechen"
+  effects:
+    - eltern_nerven: -15
+    - kinder_glueck: +20
+    - geld: -10
+right:
+  label: "Dem Kind beibringen, selbst zu lösen"
+  effects:
+    - kinder_glueck: +5
+    - eltern_nerven: +10
+    - kinder_gesundheit: +10

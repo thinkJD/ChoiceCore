@@ -1,0 +1,9 @@
+id: morgen_routine
+title: "Morgen-Routine"
+description: "Der tägliche Kampf am Morgen - zwischen Stress und Geduld."
+trigger:
+  after_cards: 1
+cards:
+  - morgen_stress
+  - hausaufgaben_drama
+insert_window: 4

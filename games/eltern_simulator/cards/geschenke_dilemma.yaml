@@ -1,0 +1,15 @@
+id: geschenke_dilemma
+image: placeholder.svg
+description: "Ihr Kind wünscht sich das neueste, teure Videospiel zum Geburtstag. Es kostet 70€ und alle Freunde haben es schon."
+left:
+  label: "Das Spiel kaufen - Kind soll glücklich sein"
+  effects:
+    - geld: -70
+    - kinder_glueck: +25
+    - eltern_nerven: +5
+right:
+  label: "Kreatives, selbstgemachtes Geschenk"
+  effects:
+    - geld: -20
+    - kinder_glueck: +10
+    - eltern_nerven: -10

@@ -1,0 +1,16 @@
+id: krank_kind
+image: placeholder.svg
+description: "Ihr Kind hat Fieber und kann nicht in den Kindergarten. Sie haben heute drei wichtige Meetings. Oma wohnt 2 Stunden entfernt."
+left:
+  label: "Zuhause bleiben und Kind pflegen"
+  effects:
+    - geld: -40
+    - kinder_gesundheit: +20
+    - kinder_glueck: +15
+    - eltern_nerven: -10
+right:
+  label: "Oma anrufen und um Hilfe bitten"
+  effects:
+    - geld: -20
+    - kinder_gesundheit: +10
+    - eltern_nerven: +5
