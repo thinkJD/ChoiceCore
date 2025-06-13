@@ -1,0 +1,16 @@
+id: kind_krank_vor_party
+image: assets/images/placeholder.svg
+description: "Am Morgen der Geburtstagsparty fühlt sich Ihr Kind etwas schlapp und hustet leicht. Es könnte nur eine kleine Erkältung sein - oder auch ansteckend."
+left:
+  label: "Hausmittel ausprobieren, hoffen"
+  effects:
+    - geld: -5
+    - kinder_glueck: +20
+    - eltern_nerven: -15
+    - kinder_gesundheit: -10
+right:
+  label: "Absagen – wird eh nichts"
+  effects:
+    - kinder_glueck: -35
+    - eltern_nerven: +10
+    - kinder_gesundheit: +20

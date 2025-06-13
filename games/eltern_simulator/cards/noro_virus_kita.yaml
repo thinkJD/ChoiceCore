@@ -1,0 +1,17 @@
+id: noro_virus_kita
+image: assets/images/placeholder.svg
+description: "In der Kita geht der Noro-Virus um. Ihr Kind zeigt noch keine Symptome, aber Sie wissen nie. Heute haben Sie wichtige Meetings."
+left:
+  label: "Kind trotzdem schicken – keine Symptome"
+  effects:
+    - geld: +0
+    - kinder_glueck: +10
+    - eltern_nerven: +15
+    - kinder_gesundheit: -20
+right:
+  label: "Kind zu Hause lassen – sicher ist sicher"
+  effects:
+    - geld: -100
+    - kinder_glueck: +15
+    - eltern_nerven: -20
+    - kinder_gesundheit: +25

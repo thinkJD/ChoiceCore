@@ -1,0 +1,16 @@
+id: kind_schreit_suessigkeiten
+image: assets/images/placeholder.svg
+description: "Mitten im Supermarkt fängt Ihr Kind laut an zu schreien, weil es Süßigkeiten möchte. Alle anderen Kunden schauen schon rüber."
+left:
+  label: "Süßigkeiten kaufen, um Ruhe zu haben"
+  effects:
+    - geld: -8
+    - kinder_glueck: +25
+    - eltern_nerven: +15
+    - kinder_gesundheit: -5
+right:
+  label: "Standhaft bleiben, keine Süßigkeiten"
+  effects:
+    - kinder_glueck: -20
+    - eltern_nerven: -25
+    - kinder_gesundheit: +10

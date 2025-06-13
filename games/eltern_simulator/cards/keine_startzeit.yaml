@@ -1,0 +1,16 @@
+id: keine_startzeit
+image: assets/images/placeholder.svg
+description: "Auf der Einladung steht kein Datum und keine Uhrzeit. In der WhatsApp-Gruppe wird darüber diskutiert, aber Sie haben es verpasst. Die Party ist morgen."
+left:
+  label: "In der Gruppe nachfragen (peinlich!)"
+  effects:
+    - kinder_glueck: +20
+    - eltern_nerven: -20
+    - geld: +0
+right:
+  label: "Raten und hoffen, dass es passt"
+  effects:
+    - kinder_glueck: +5
+    - eltern_nerven: -30
+    - geld: +0
+    - kinder_gesundheit: -5

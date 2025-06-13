@@ -1,0 +1,6 @@
+id: kita_alltag
+cards: [noro_virus_kita, kind_krank_abholen, kind_hat_gebissen]
+trigger:
+  after_cards: 20
+  requires_story_completed: [geburtstag_einladung]
+insert_window: 4

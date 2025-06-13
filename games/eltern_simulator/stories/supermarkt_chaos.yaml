@@ -1,0 +1,5 @@
+id: supermarkt_chaos
+cards: [schlafanzug_supermarkt, kind_schreit_suessigkeiten, darf_ich_chips, kind_findet_rubbellos]
+trigger:
+  after_cards: 10
+insert_window: 5

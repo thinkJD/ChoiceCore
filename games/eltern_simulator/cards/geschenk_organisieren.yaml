@@ -1,0 +1,16 @@
+id: geschenk_organisieren
+image: assets/images/placeholder.svg
+description: "Sie haben nur noch zwei Stunden bis zur Party und brauchen noch ein Geschenk. Der einzige offene Laden ist der teure Spielzeugladen oder die Tankstelle."
+left:
+  label: "Geschenk dort besorgen, irgendwie"
+  effects:
+    - geld: -35
+    - kinder_glueck: +20
+    - eltern_nerven: -15
+right:
+  label: "Spontan etwas anderes besorgen"
+  effects:
+    - geld: -15
+    - kinder_glueck: +10
+    - eltern_nerven: -25
+    - kinder_gesundheit: +5

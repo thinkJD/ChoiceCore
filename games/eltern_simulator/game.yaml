@@ -15,6 +15,7 @@ powers:
     max: 100
 load:
   cards:
+    # Regular cards (main deck)
     - "cards/intro.yaml"
     - "cards/krank_kind.yaml"
     - "cards/putzen_chaos.yaml"
@@ -29,7 +30,25 @@ load:
     - "cards/internet_sucht.yaml"
     - "cards/mobbing_schule.yaml"
     - "cards/teenagerparty.yaml"
-    # Story cards loaded separately - don't include in main deck
+    # Standalone supermarkt cards (main deck)
+    - "cards/darf_ich_suessigkeiten.yaml"
+    - "cards/darf_ich_dosenfisch.yaml"
+    - "cards/darf_ich_kuscheltier.yaml"
+    - "cards/darf_ich_ueberraschungsei.yaml"
+    - "cards/darf_ich_fertigkuchen.yaml"
+    - "cards/darf_ich_pudding.yaml"
+    - "cards/kind_hilft_alter_frau.yaml"
+    - "cards/kind_erinnert_einkauf.yaml"
+    # Standalone geburtstag cards (main deck)
+    - "cards/keine_startzeit.yaml"
+    - "cards/ueberschneidung_arbeit.yaml"
+    - "cards/kostuem_gefaellt_nicht.yaml"
+    - "cards/wetterwarnung_gartenparty.yaml"
+    - "cards/gebeten_zu_helfen.yaml"
+    # Standalone kita cards (main deck)
+    - "cards/kitafest_mitbringliste.yaml"
+    - "cards/personalausfall_kita.yaml"
+    # Story cards (excluded from main deck automatically)
     - "cards/morgen_stress.yaml"
     - "cards/hausaufgaben_drama.yaml"
     - "cards/schlange_wunsch.yaml"
@@ -37,12 +56,28 @@ load:
     - "cards/geburtstag_planung.yaml"
     - "cards/party_ort.yaml"
     - "cards/geschenke_dilemma.yaml"
+    # New story cards
+    - "cards/schlafanzug_supermarkt.yaml"
+    - "cards/kind_schreit_suessigkeiten.yaml"
+    - "cards/darf_ich_chips.yaml"
+    - "cards/kind_findet_rubbellos.yaml"
+    - "cards/einladung_erhalten.yaml"
+    - "cards/whatsapp_gruppen_hoelle.yaml"
+    - "cards/geschenk_organisieren.yaml"
+    - "cards/kostuem_kaufen.yaml"
+    - "cards/kind_krank_vor_party.yaml"
+    - "cards/noro_virus_kita.yaml"
+    - "cards/kind_krank_abholen.yaml"
+    - "cards/kind_hat_gebissen.yaml"
   boosters: []
   stories:
+    - "stories/morgen_routine.yaml"
     - "stories/schlangen_abenteuer.yaml"
     - "stories/kindergeburtstag.yaml"
-    - "stories/morgen_routine.yaml"
     - "stories/krankes_kind.yaml"
     - "stories/teenager_krise.yaml"
+    - "stories/supermarkt_chaos.yaml"
+    - "stories/geburtstag_einladung.yaml"
+    - "stories/kita_alltag.yaml"
 assets:
   base_path: "assets/images/"

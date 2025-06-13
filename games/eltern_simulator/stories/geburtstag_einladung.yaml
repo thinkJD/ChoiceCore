@@ -1,0 +1,6 @@
+id: geburtstag_einladung
+cards: [einladung_erhalten, whatsapp_gruppen_hoelle, geschenk_organisieren, kostuem_kaufen, kind_krank_vor_party]
+trigger:
+  after_cards: 15
+  requires_story_completed: [supermarkt_chaos]
+insert_window: 6

@@ -1,0 +1,17 @@
+id: wetterwarnung_gartenparty
+image: assets/images/placeholder.svg
+description: "Es kommt eine Sturmwarnung und die geplante Gartenparty steht auf der Kippe. In der WhatsApp-Gruppe herrscht Panik. Was ist Ihr Vorschlag?"
+left:
+  label: "Vorschlagen, alles ins Wohnzimmer zu verlegen"
+  effects:
+    - kinder_glueck: +20
+    - eltern_nerven: -15
+    - geld: +0
+    - kinder_gesundheit: +10
+right:
+  label: "Stumm schalten und abwarten"
+  effects:
+    - kinder_glueck: +5
+    - eltern_nerven: -25
+    - geld: +0
+    - kinder_gesundheit: -5

@@ -1,0 +1,16 @@
+id: darf_ich_chips
+image: assets/images/placeholder.svg
+description: "Ihr Kind hält eine große Packung Chips hoch: 'Darf ich die haben? Bitte, bitte!' Es ist Dienstag und eigentlich gibt es Chips nur am Wochenende."
+left:
+  label: "Na gut, eine Packung"
+  effects:
+    - geld: -6
+    - kinder_glueck: +20
+    - eltern_nerven: +5
+    - kinder_gesundheit: -8
+right:
+  label: "Nein, Chips gibt's nur am Wochenende"
+  effects:
+    - kinder_glueck: -15
+    - eltern_nerven: -10
+    - kinder_gesundheit: +10

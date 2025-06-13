@@ -1,0 +1,16 @@
+id: ueberschneidung_arbeit
+image: assets/images/placeholder.svg
+description: "Die Geburtstagsparty ist genau dann, wenn Sie eigentlich arbeiten müssen. Ihr Chef ist nicht begeistert von kurzfristigen Änderungen."
+left:
+  label: "Kurzfristig Urlaub nehmen"
+  effects:
+    - geld: -100
+    - kinder_glueck: +30
+    - eltern_nerven: -20
+right:
+  label: "Andere Betreuung organisieren"
+  effects:
+    - geld: -50
+    - kinder_glueck: +15
+    - eltern_nerven: -25
+    - kinder_gesundheit: +5

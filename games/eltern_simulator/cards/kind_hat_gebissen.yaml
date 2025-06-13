@@ -1,0 +1,16 @@
+id: kind_hat_gebissen
+image: assets/images/placeholder.svg
+description: "Die Kita informiert Sie: Ihr Kind hat heute ein anderes Kind gebissen. Sie sollen es bitte abholen und mit ihm sprechen."
+left:
+  label: "Kind zur Rede stellen, sich entschuldigen"
+  effects:
+    - geld: +0
+    - kinder_glueck: -10
+    - eltern_nerven: -20
+    - kinder_gesundheit: +15
+right:
+  label: "Abtun: 'Wird schon nicht so schlimm sein'"
+  effects:
+    - kinder_glueck: +10
+    - eltern_nerven: +10
+    - kinder_gesundheit: -15

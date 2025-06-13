@@ -1,0 +1,17 @@
+id: kind_krank_abholen
+image: assets/images/placeholder.svg
+description: "Die Kita ruft an: Ihr Kind ist krank und muss sofort abgeholt werden. Sie sitzen gerade in einem wichtigen Meeting mit Ihrem Chef."
+left:
+  label: "Meeting verlassen und losfahren"
+  effects:
+    - geld: -50
+    - kinder_glueck: +20
+    - eltern_nerven: -25
+    - kinder_gesundheit: +20
+right:
+  label: "Partner*in soll übernehmen"
+  effects:
+    - geld: -20
+    - kinder_glueck: +15
+    - eltern_nerven: +10
+    - kinder_gesundheit: +15

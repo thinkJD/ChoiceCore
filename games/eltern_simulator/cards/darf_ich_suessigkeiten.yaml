@@ -1,0 +1,16 @@
+id: darf_ich_suessigkeiten
+image: assets/images/placeholder.svg
+description: "Ihr Kind fragt höflich: 'Darf ich bitte diese Süßigkeiten haben?' und hält eine Packung Gummibärchen hoch."
+left:
+  label: "Ja, eine Kleinigkeit"
+  effects:
+    - geld: -5
+    - kinder_glueck: +15
+    - eltern_nerven: +5
+    - kinder_gesundheit: -3
+right:
+  label: "Nein, heute nicht"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -5
+    - kinder_gesundheit: +8

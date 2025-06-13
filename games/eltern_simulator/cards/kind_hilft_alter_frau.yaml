@@ -1,0 +1,15 @@
+id: kind_hilft_alter_frau
+image: assets/images/placeholder.svg
+description: "Ihr Kind sieht eine ältere Frau, die ein schweres Wasserkistchen nicht ins Auto bekommt, und bietet spontan Hilfe an. Die Frau freut sich riesig."
+left:
+  label: "Lob geben und gemeinsam freuen"
+  effects:
+    - kinder_glueck: +25
+    - eltern_nerven: +15
+    - kinder_gesundheit: +10
+right:
+  label: "Stolz, aber ruhig weitergehen"
+  effects:
+    - kinder_glueck: +15
+    - eltern_nerven: +10
+    - kinder_gesundheit: +15

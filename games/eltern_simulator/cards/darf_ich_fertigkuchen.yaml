@@ -1,0 +1,16 @@
+id: darf_ich_fertigkuchen
+image: assets/images/placeholder.svg
+description: "Ihr Kind zeigt begeistert auf einen bunten Fertigkuchen mit viel Zuckerguss: 'Wow! Den möchte ich haben! Der sieht so lecker aus!'"
+left:
+  label: "Okay, aber nur diesmal"
+  effects:
+    - geld: -15
+    - kinder_glueck: +25
+    - eltern_nerven: +5
+    - kinder_gesundheit: -10
+right:
+  label: "Nein, das ist nur Zucker"
+  effects:
+    - kinder_glueck: -18
+    - eltern_nerven: -12
+    - kinder_gesundheit: +12

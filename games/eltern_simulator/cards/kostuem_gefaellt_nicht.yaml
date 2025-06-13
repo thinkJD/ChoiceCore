@@ -1,0 +1,16 @@
+id: kostuem_gefaellt_nicht
+image: assets/images/placeholder.svg
+description: "Am Morgen der Party gefällt Ihrem Kind das Kostüm plötzlich nicht mehr: 'Das ist doof! Ich will als Prinzessin gehen!' Die Party beginnt in zwei Stunden."
+left:
+  label: "Ein neues Kostüm kaufen"
+  effects:
+    - geld: -35
+    - kinder_glueck: +30
+    - eltern_nerven: -25
+right:
+  label: "Beim alten Kostüm bleiben"
+  effects:
+    - kinder_glueck: -25
+    - eltern_nerven: -20
+    - geld: +0
+    - kinder_gesundheit: +5

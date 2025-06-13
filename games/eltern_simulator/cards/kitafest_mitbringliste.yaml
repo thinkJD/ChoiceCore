@@ -1,0 +1,17 @@
+id: kitafest_mitbringliste
+image: assets/images/placeholder.svg
+description: "Für das Kitafest sollen Sie etwas mitbringen. Zur Auswahl stehen: aufwendiger Salat mit Dekoration oder einfach nur ein gekauftes Baguette."
+left:
+  label: "Ja, aufwendiger Salat + Deko"
+  effects:
+    - geld: -20
+    - kinder_glueck: +25
+    - eltern_nerven: -25
+    - kinder_gesundheit: +10
+right:
+  label: "Nur ein gekauftes Baguette"
+  effects:
+    - geld: -5
+    - kinder_glueck: +10
+    - eltern_nerven: +15
+    - kinder_gesundheit: +5

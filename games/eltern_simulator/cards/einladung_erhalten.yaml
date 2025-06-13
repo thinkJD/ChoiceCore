@@ -1,0 +1,15 @@
+id: einladung_erhalten
+image: assets/images/placeholder.svg
+description: "Ihr Kind kommt nach Hause und zeigt Ihnen eine Kindergeburtstag-Einladung: 'Ich bin eingeladen! Können wir hingehen?' Es ist am kommenden Samstag."
+left:
+  label: "Ja, wir sagen zu"
+  effects:
+    - kinder_glueck: +25
+    - eltern_nerven: -10
+    - geld: -20
+right:
+  label: "Nein, ist gerade zu viel los"
+  effects:
+    - kinder_glueck: -30
+    - eltern_nerven: +15
+    - geld: +0

@@ -1,0 +1,15 @@
+id: darf_ich_kuscheltier
+image: assets/images/placeholder.svg
+description: "Im Supermarkt gibt es eine kleine Auswahl an Kuscheltieren. Ihr Kind umarmt einen kleinen Teddybär: 'Der ist so süß! Darf ich den haben?'"
+left:
+  label: "Okay, eins darf mit"
+  effects:
+    - geld: -12
+    - kinder_glueck: +25
+    - eltern_nerven: +5
+right:
+  label: "Nein, wir haben genug Kuscheltiere"
+  effects:
+    - kinder_glueck: -20
+    - eltern_nerven: -10
+    - geld: +0
