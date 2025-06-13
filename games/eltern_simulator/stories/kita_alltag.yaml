@@ -1,6 +1,14 @@
 id: kita_alltag
-cards: [noro_virus_kita, kind_krank_abholen, kind_hat_gebissen]
 trigger:
   after_cards: 20
   requires_story_completed: [geburtstag_einladung]
-insert_window: 4
+cards:
+  - id: noro_virus_kita
+    probability: 0.40  # 40% chance - happens but not constantly
+    mix_in_next: 18    # Mix into next 18 cards
+  - id: kind_krank_abholen
+    probability: 0.65  # 65% chance - quite common occurrence
+    mix_in_next: 22    # Mix into next 22 cards
+  - id: kind_hat_gebissen
+    probability: 0.30  # 30% chance - concerning but not frequent
+    mix_in_next: 25    # Mix into next 25 cards

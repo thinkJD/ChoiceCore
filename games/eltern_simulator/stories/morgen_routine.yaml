@@ -1,9 +1,10 @@
 id: morgen_routine
-title: "Morgen-Routine"
-description: "Der tägliche Kampf am Morgen - zwischen Stress und Geduld."
 trigger:
   after_cards: 1
 cards:
-  - morgen_stress
-  - hausaufgaben_drama
-insert_window: 4
+  - id: morgen_stress
+    probability: 0.85  # 85% chance - very common morning chaos
+    mix_in_next: 8     # Mix into next 8 cards (early game)
+  - id: hausaufgaben_drama  
+    probability: 0.70  # 70% chance - homework is frequent issue
+    mix_in_next: 12    # Mix into next 12 cards

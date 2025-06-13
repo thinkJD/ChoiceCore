@@ -1,6 +1,20 @@
 id: geburtstag_einladung
-cards: [einladung_erhalten, whatsapp_gruppen_hoelle, geschenk_organisieren, kostuem_kaufen, kind_krank_vor_party]
 trigger:
   after_cards: 15
   requires_story_completed: [supermarkt_chaos]
-insert_window: 6
+cards:
+  - id: einladung_erhalten
+    probability: 0.90  # 90% chance - very likely to get invitations
+    mix_in_next: 12    # Mix into next 12 cards
+  - id: whatsapp_gruppen_hoelle
+    probability: 0.70  # 70% chance - common parent nightmare
+    mix_in_next: 18    # Mix into next 18 cards  
+  - id: geschenk_organisieren
+    probability: 0.85  # 85% chance - almost always happens
+    mix_in_next: 15    # Mix into next 15 cards
+  - id: kostuem_kaufen
+    probability: 0.50  # 50% chance - only if costume party
+    mix_in_next: 20    # Mix into next 20 cards
+  - id: kind_krank_vor_party
+    probability: 0.35  # 35% chance - Murphy's law but not always
+    mix_in_next: 25    # Mix into next 25 cards

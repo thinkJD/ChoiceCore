@@ -1,5 +1,16 @@
 id: supermarkt_chaos
-cards: [schlafanzug_supermarkt, kind_schreit_suessigkeiten, darf_ich_chips, kind_findet_rubbellos]
 trigger:
   after_cards: 10
-insert_window: 5
+cards:
+  - id: schlafanzug_supermarkt
+    probability: 0.75  # 75% chance - common scenario
+    mix_in_next: 15    # Mix into next 15 cards
+  - id: kind_schreit_suessigkeiten  
+    probability: 0.60  # 60% chance - moderately common
+    mix_in_next: 20    # Mix into next 20 cards
+  - id: darf_ich_chips
+    probability: 0.80  # 80% chance - very common kid request
+    mix_in_next: 25    # Mix into next 25 cards
+  - id: kind_findet_rubbellos
+    probability: 0.25  # 25% chance - rare lucky event
+    mix_in_next: 30    # Mix into next 30 cards

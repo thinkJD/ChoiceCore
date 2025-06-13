@@ -100,7 +100,28 @@ right:
 
 ## Story Structure (YAML Format)
 
-Stories create narrative sequences with complex triggering:
+### Probabilistic Stories (Recommended)
+
+Stories create dynamic narrative experiences with probabilistic card mixing:
+
+```yaml
+id: story_name
+trigger:
+  after_cards: 10                      # Trigger after N regular cards
+  requires_story_completed: [story_a]  # Require other stories first
+cards:
+  - id: story_card_1
+    probability: 0.75                  # 75% chance to appear
+    mix_in_next: 15                    # Mix into next 15 cards
+  - id: story_card_2
+    probability: 0.50                  # 50% chance to appear
+    mix_in_next: 20                    # Mix into next 20 cards
+  - id: rare_event_card
+    probability: 0.25                  # 25% chance (rare event)
+    mix_in_next: 30                    # Mix into next 30 cards
+```
+
+### Legacy Sequential Stories (Backward Compatible)
 
 ```yaml
 id: story_name
@@ -110,6 +131,29 @@ trigger:
   requires_story_completed: [story_a]  # Require other stories first
 insert_window: 3                       # Inject within next 3 draws
 ```
+
+### Probabilistic Story System Benefits
+
+The new probabilistic system provides:
+
+- **🎲 Replayability**: Each playthrough has different story experiences
+- **🎯 Realistic Frequency**: Common events (85%) vs rare events (25%)
+- **📍 Dynamic Positioning**: Cards appear at random positions within specified ranges
+- **⚖️ Balanced Gameplay**: Not all story cards appear every time
+- **🔄 Varied Experiences**: Multiple playthroughs feel unique and fresh
+
+**Probability Guidelines:**
+- **Very Common (80-90%)**: Daily parenting situations (morning chaos, meal times)
+- **Common (60-75%)**: Regular challenges (homework, bedtime, shopping requests)
+- **Moderate (40-60%)**: Occasional issues (illness, social conflicts, special events)
+- **Uncommon (25-40%)**: Challenging situations (behavior problems, accidents)
+- **Rare (10-25%)**: Lucky breaks, unexpected positive events, major incidents
+
+**Mix Range Guidelines:**
+- **Early Game (8-15 cards)**: Immediate story continuation
+- **Short Term (15-20 cards)**: Story elements within current session
+- **Medium Term (20-30 cards)**: Story threads across multiple sessions
+- **Long Term (30+ cards)**: Rare callbacks and long-term consequences
 
 ## Important Rules
 

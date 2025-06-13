@@ -130,7 +130,13 @@ export class Engine {
         const req = story.trigger?.requires_story_completed || [];
         const haveReq = Array.isArray(req) && req.every(r => this.completedStories.has(r));
         if ((after == null || this.history.length >= after) && haveReq) {
-          if (Array.isArray(story.cards) && story.cards.length) {
+          
+          // Handle new probabilistic story format
+          if (Array.isArray(story.cards) && story.cards.length && story.cards[0].probability !== undefined) {
+            this.mixProbabilisticStoryCards(story);
+          }
+          // Handle old sequential story format (backward compatibility)
+          else if (Array.isArray(story.cards) && story.cards.length) {
             const windowSize = story.insert_window;
             if (Number.isInteger(windowSize) && windowSize > 0) {
               for (let i = story.cards.length - 1; i >= 0; i--) {
@@ -145,6 +151,29 @@ export class Engine {
           }
           this.triggeredStories.add(story.id);
         }
+      }
+    });
+  }
+
+  mixProbabilisticStoryCards(story) {
+    console.log(`🎲 Mixing probabilistic story: ${story.id}`);
+    
+    story.cards.forEach(storyCard => {
+      const { id: cardId, probability, mix_in_next } = storyCard;
+      
+      // Roll for probability
+      const roll = Math.random();
+      console.log(`  🎯 Card ${cardId}: ${(probability * 100).toFixed(0)}% chance, rolled ${(roll * 100).toFixed(0)}%`);
+      
+      if (roll <= probability) {
+        // Card is selected, mix it into the specified range
+        const mixRange = Math.min(mix_in_next || 15, this.deck.length);
+        const insertPosition = Math.floor(Math.random() * (mixRange + 1));
+        
+        this.deck.splice(insertPosition, 0, cardId);
+        console.log(`    ✅ Added ${cardId} at position ${insertPosition} (range: ${mixRange})`);
+      } else {
+        console.log(`    ❌ Skipped ${cardId} (failed probability roll)`);
       }
     });
   }
