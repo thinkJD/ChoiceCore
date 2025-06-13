@@ -6,13 +6,31 @@ Write your story in YAML. Drop it in a folder. The engine takes care of the rest
 
 > Build games that spiral into chaos... one choice at a time.
 
+## 🎮 Featured Game: Eltern Simulator
+
+**Eltern Simulator** is a German parenting simulation where you navigate the chaos of raising children. Make decisions that affect your money, children's happiness, your nerves, and their health through daily parenting scenarios.
+
+**Features:**
+- 🇩🇪 Complete German language experience
+- 🎯 4-power balancing system (Geld, Glück, Nerven, Gesundheit)
+- 📖 Story sequences with proper narrative flow
+- 🖱️ Hover previews showing power change effects
+- 📱 Responsive design with vertical power bars
+- 🎪 Multiple story arcs including birthday parties and pet adventures
+
+**Play now:** `/?game=eltern_simulator`
+
+![Game Preview](docs/images/hover_preview.png)
+
 ---
 
 ## 🔧 What It Is
 
-- A client-only static web engine
+- A client-only static web engine with modern UI
 - Loads self-contained games (cards, stories, assets) via URL param
 - Powers, cards, boosters, and stories are all defined in YAML
+- Advanced story sequencing and narrative tracking
+- Real-time power change previews and visual feedback
 - Designed to be developer-friendly and PR-ready
 
 ---
@@ -81,25 +99,49 @@ modifiers:
 duration: 3
 ```
 
+### Example story sequence
+
+```yaml
+id: morning_routine
+cards: [morning_stress, homework_drama]
+trigger:
+  after_cards: 1
+insert_window: 3
+```
+
 ---
 
 ## 🚧 Roadmap
 
 - [x] Load games from plugin folders
 - [x] YAML-defined cards, powers, boosters, stories
+- [x] Advanced story tracking with completion states
+- [x] Hover preview system for power changes
+- [x] Responsive vertical power bar UI
+- [x] Story sequence injection and narrative flow
 - [ ] Local save/load system
-- [ ] Story tracking (flags, conditions)
 - [ ] In-browser game editor
 - [ ] Game gallery / selector UI
 - [ ] GitHub PR support for new games
+- [ ] Multi-language support framework
+- [ ] Card animation effects
 
 ---
 
 ## 🤝 Contributing
 
-Want to build your own game? Fork this repo and add your game folder under `games/`.
+Want to build your own game? Check out our comprehensive [Card Generation Guide](CARD_GENERATION_GUIDE.md) and [Architecture Documentation](ARCHITECTURE.md).
 
-Pull requests are welcome — especially for new games. Add your name to your game metadata and we’ll shout you out (or blame you) accordingly.
+**Quick Start:**
+1. Fork this repo
+2. Create your game folder under `games/your-game-name/`
+3. Follow the YAML structure in `games/eltern_simulator/`
+4. Test with `/?game=your-game-name`
+5. Submit a PR!
+
+Pull requests are welcome — especially for new games. Add your name to your game metadata and we'll shout you out (or blame you) accordingly.
+
+**Testing:** Run automated tests with `node tests/test_game.js` to verify your game logic.
 
 ---
 

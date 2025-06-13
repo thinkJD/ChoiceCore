@@ -10,9 +10,10 @@ human and AI collaboration in mind: configuration is YAML-based, logic is modula
 code generation should be predictable.
 
 Goals:
-- Run entirely in the browser
+- Run entirely in the browser with modern UI/UX
 - Load game via URL param (?game=game_name)
 - Accept GitHub PRs with new games
+- Real-time visual feedback and interactive elements
 - Future-proof for save games, UI editors, and modding
 
 Core Concepts
@@ -23,12 +24,15 @@ Core Concepts
   - Optional image (referenced by relative URL)
   - Description text
   - Choice-based effects: adjust powers, trigger follow-ups, apply boosters
-  - Can be part of a story
+  - Can be part of a story sequence
+  - Support hover previews showing power change effects
 
-+ Powers:
-+  - Numeric values with per-power bounds (default 0–100 if not specified in game.yaml)
-+  - Game over when out of bounds (using configured bounds, unless modified)
-+  - Boosters can temporarily override cap
+- Powers:
+  - Numeric values with per-power bounds (default 0–100 if not specified in game.yaml)
+  - Game over when out of bounds (using configured bounds, unless modified)
+  - Boosters can temporarily override caps
+  - Visual representation with vertical progress bars
+  - Real-time preview of changes on hover
 
 - Boosters:
   - Active for N rounds
@@ -38,9 +42,11 @@ Core Concepts
     - Affect specific powers or global logic
 
 - Stories:
-  - Sequence of cards
+  - Sequence of cards that tell a narrative
   - Triggered by card count, flags, or prior completions
-  - Injected into next N draws when activated
+  - Injected into deck with configurable insertion windows
+  - Support completion tracking and dependencies
+  - Excluded from main deck to prevent duplication
 
 Plugin Structure
 ----------------
@@ -48,12 +54,12 @@ Plugin Structure
 Each game is a folder under `/games/`. Example:
 
   /games/
-    pirate_adventure/
+    eltern_simulator/
       game.yaml
       cards/
         *.yaml
       boosters/
-        *.yaml
+        *.yaml (optional)
       stories/
         *.yaml
       assets/
@@ -63,31 +69,30 @@ Each game is a folder under `/games/`. Example:
 `game.yaml` defines:
 --------------------
 
-  name: "Pirate Adventure"
-  entry_card: intro_card
+  name: "Eltern Simulator"
+  entry_card: intro
   powers:
-    # Each power can be defined as a string (name) or an object with name, min, and max values.
-    - name: morale
+    - name: geld
+      min: 0
+      max: 500
+    - name: kinder_glueck
       min: 0
       max: 100
-    - name: gold
+    - name: eltern_nerven
       min: 0
       max: 100
-    - name: hull
+    - name: kinder_gesundheit
       min: 0
       max: 100
   load:
-    # Each entry must be an explicit list of YAML files (manifest) maintained by the game author.
     cards:
-      - "cards/intro_card.yaml"
-      - "cards/blacksmith_offer.yaml"
-      - "cards/..."
-    boosters:
-      - "boosters/golden_chalice.yaml"
-      - "boosters/..."
+      - "cards/intro.yaml"
+      - "cards/krank_kind.yaml"
+      # ... other cards
     stories:
-      - "stories/royal_wedding.yaml"
-      - "stories/..."
+      - "stories/morgen_routine.yaml"
+      - "stories/schlangen_abenteuer.yaml"
+      # ... other stories
   assets:
     base_path: "assets/images/"
 
@@ -98,66 +103,122 @@ Game Engine Flow
 2. Fetch /games/{game}/game.yaml
 3. Load all referenced YAML files
 4. Construct:
-   - Powers
-   - Initial draw stack
-   - Story triggers
+   - Powers with visual representations
+   - Initial draw stack (excluding story cards)
+   - Story triggers and tracking
    - Booster registry
 5. Begin game loop with entry_card
 6. At each step:
-   - Render current card
-   - Apply choice effects
-   - Modify powers
-   - Trigger any stories/boosters
-   - Check game over
+   - Render current card with hover preview system
+   - Apply choice effects with visual feedback
+   - Update power displays with smooth animations
+   - Trigger story sequences based on conditions
+   - Check game over conditions
+
+UI/UX Features
+--------------
+
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Vertical Power Bars**: Space-efficient layout eliminating scrolling
+- **Hover Previews**: Real-time display of power changes before selection
+- **Color-coded Feedback**: Green for positive changes, red for negative
+- **Smooth Animations**: Power bar transitions and visual state changes
+- **Modern Styling**: Gradient backgrounds and glassmorphism effects
+
+Story System Architecture
+-------------------------
+
+Stories are complex narrative sequences with the following features:
+
+- **Trigger Conditions**: `after_cards`, `requires_story_completed`
+- **Insertion Logic**: Cards injected with configurable `insert_window`
+- **Completion Tracking**: Stories marked complete when final card is played
+- **Dependency System**: Stories can require other stories to complete first
+- **Deck Exclusion**: Story cards excluded from main deck to prevent duplication
+
+Example story trigger flow:
+1. Player completes N cards
+2. Engine checks story trigger conditions
+3. Story cards injected into upcoming draws
+4. Story marked as triggered
+5. When story's final card is played, marked as completed
 
 YAML Object Examples
 --------------------
 
 CARD:
 
-  id: blacksmith_offer
-  image: assets/images/blacksmith.png
-  description: "A blacksmith offers to improve your sword for gold."
+  id: krank_kind
+  image: assets/images/placeholder.svg
+  description: "Dein Kind ist krank und möchte zu Hause bleiben."
   left:
-    label: "Accept"
+    label: "Zu Hause lassen"
     effects:
-      - gold: -10
-      - morale: +5
-    follow_up: enhanced_blade
+      - geld: -50  # Lost work day
+      - kinder_glueck: +15
+      - kinder_gesundheit: +10
   right:
-    label: "Decline"
+    label: "Trotzdem zur Schule"
     effects:
-      - morale: -3
-  tags: ["economy", "blacksmith"]
-
-BOOSTER:
-
-  id: golden_chalice
-  name: "Golden Chalice"
-  description: "Raises gold cap to 200 and reduces all gold loss by 50%."
-  modifiers:
-    - power_cap:
-        power: gold
-        value: 200
-    - effect_modifier:
-        power: gold
-        type: loss
-        multiplier: 0.5
-  duration: 5
+      - eltern_nerven: -20
+      - kinder_gesundheit: -15
+      - kinder_glueck: -10
 
 STORY:
 
-  id: royal_wedding
-  title: "Royal Wedding"
-  description: "A chain of events around an arranged marriage."
+  id: morgen_routine
+  cards: [morgen_stress, hausaufgaben_drama]
   trigger:
-    after_cards: 20
-    requires_story_completed: [northern_invasion]
-  cards:
-    - wedding_invitation
-    - marriage_negotiation
-    - ceremony_drama
-  insert_window: 5
+    after_cards: 1
+  insert_window: 3
+
+POWER VISUALIZATION:
+
+The power system uses vertical bars with percentage-based heights:
+- Visual feedback with smooth CSS transitions
+- Hover previews showing calculated changes
+- Color-coded indicators (green/red) for positive/negative effects
+- Responsive design adapting to screen size
+
+Technical Implementation
+------------------------
+
+### File Structure:
+```
+src/
+  main.js       # Entry point and game initialization
+  engine.js     # Core game logic and state management
+  loader.js     # YAML loading and parsing
+  renderer.js   # UI rendering and visual effects
+
+tests/
+  *.js          # Automated testing suite
+
+docs/
+  images/       # Documentation screenshots
+
+games/
+  */            # Individual game folders
+```
+
+### Key Components:
+
+**Engine (engine.js):**
+- Power management with bounds checking
+- Story trigger and completion tracking
+- Deck management with story card exclusion
+- Booster application and duration tracking
+
+**Renderer (renderer.js):**
+- Dynamic UI generation with modern styling
+- Hover preview system with real-time calculations
+- Power bar animations and visual feedback
+- Responsive layout management
+
+**Loader (loader.js):**
+- YAML parsing and validation
+- Asset path resolution
+- Error handling for missing files
 
 Development Notes
 -----------------
@@ -165,24 +226,50 @@ Development Notes
 - Everything is static, fetched via browser
 - All YAML is parsed and resolved on load
 - Assets are referenced by relative path from base defined in `game.yaml`
-- Save/load, state visualization, modding, and editor support are future goals
+- Story cards are automatically excluded from main deck during initialization
+- Hover previews parse effect strings (including "+/-" notation) for display
+- Modern CSS features used for glassmorphism and smooth animations
+
+Testing Framework
+-----------------
+
+Automated testing using Playwright for:
+- Game logic verification
+- Story sequence validation
+- Power calculation accuracy
+- UI interaction testing
+- Responsive design verification
+
+Run tests: `node tests/test_game.js`
 
 Planned Features (Future Iterations)
 ------------------------------------
 
-- Save/load system (likely via localStorage)
+- Save/load system (via localStorage)
 - In-browser editor for card/game creation
-- Game selector UI
+- Game selector UI with game previews
 - Hot-reload of YAML during development
-- More complex card conditions (flag logic, card history, etc.)
-- Multiple endings
-- Tags and filters
-- Modding support
+- More complex card conditions (flag logic, card history)
+- Multiple endings with narrative tracking
+- Animation effects for card transitions
+- Multi-language support framework
+- Advanced statistics and analytics
 
 Contribution Model
 ------------------
 
 - Each game is a standalone folder
 - PRs can add new games under `/games/`
-- Linting/validation should be added for YAML schema compatibility
-- Game metadata can be added for versioning later
+- Use comprehensive Card Generation Guide for new games
+- Automated testing validates game logic
+- Modern UI/UX standards maintained across games
+- Documentation and examples provided for common patterns
+
+Performance Considerations
+--------------------------
+
+- Lazy loading of game assets
+- Efficient YAML parsing and caching
+- Minimal DOM manipulation for smooth animations
+- CSS-based animations over JavaScript where possible
+- Responsive design patterns for cross-device compatibility

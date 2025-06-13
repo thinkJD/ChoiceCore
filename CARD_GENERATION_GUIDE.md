@@ -1,10 +1,19 @@
-# Card Generation Guide for Eltern Simulator
+# Card Generation Guide for ChoiceCore Games
 
-This guide provides instructions for Large Language Models (LLMs) to generate cards for the Eltern Simulator game. Use this to help kids create their own parenting scenarios and game content.
+This guide provides comprehensive instructions for Large Language Models (LLMs) and developers to create cards for ChoiceCore games. While focused on the Eltern Simulator example, these principles apply to any narrative choice game.
 
-## Game Overview
+## ChoiceCore Engine Overview
 
-**Eltern Simulator** is a German parenting simulation game inspired by Reigns. Players make binary choices (left/right) that affect four power values representing parenting challenges.
+**ChoiceCore** is a minimalist game engine for narrative games with binary choices, inspired by Reigns. The engine features:
+- 🎮 Modern responsive UI with vertical power bars
+- 🖱️ Hover preview system showing power changes
+- 📖 Complex story sequencing with dependencies
+- 🎯 Customizable power systems and game rules
+- 📱 Cross-device compatibility
+
+## Featured Game: Eltern Simulator
+
+**Eltern Simulator** is a German parenting simulation where players navigate parenting challenges through binary choices affecting four power systems.
 
 ## Power System (Resources)
 
@@ -12,23 +21,42 @@ The game tracks four powers that must stay within bounds (0-100 for most, 0-500 
 
 ### 💰 **geld** (Money: 0-500)
 - Represents family financial resources
-- Lost through: purchases, medical expenses, activities, gifts
-- Gained through: saving money, avoiding expenses, working extra
+- Lost through: purchases, medical expenses, activities, gifts, missed work
+- Gained through: saving money, avoiding expenses, working extra, smart financial choices
 
 ### 😊 **kinder_glueck** (Kids Happiness: 0-100)  
 - Represents how happy and satisfied the children are
-- Increased by: fun activities, getting desires fulfilled, quality time
-- Decreased by: restrictions, disappointments, conflicts
+- Increased by: fun activities, getting desires fulfilled, quality time, freedom
+- Decreased by: restrictions, disappointments, conflicts, unfairness
 
 ### 🧠 **eltern_nerven** (Parent Nerves/Mental Health: 0-100)
 - Represents parent stress and mental well-being
-- Decreased by: difficult situations, time pressure, conflicts
-- Increased by: successful resolutions, getting help, rest
+- Decreased by: difficult situations, time pressure, conflicts, constant demands
+- Increased by: successful resolutions, getting help, rest, cooperation
 
 ### ❤️ **kinder_gesundheit** (Kids Health: 0-100)
 - Represents physical and mental health of children
-- Increased by: good choices, exercise, proper care
-- Decreased by: risky behavior, poor choices, neglect
+- Increased by: good choices, exercise, proper care, safety, nutrition
+- Decreased by: risky behavior, poor choices, neglect, unsafe situations
+
+## Advanced Features
+
+### Story Sequences
+The engine supports complex narrative arcs through story sequences:
+- **Story Cards**: Special cards that appear in predetermined order
+- **Trigger Conditions**: Stories activate based on card count or story completion
+- **Dependencies**: Stories can require other stories to complete first
+- **Insertion Windows**: Stories inject cards within configurable ranges
+
+### Hover Preview System
+- **Real-time Feedback**: Players see exact power changes before choosing
+- **Color Coding**: Green for positive effects, red for negative effects
+- **Effect Parsing**: Supports both "+15" and "15" format in YAML
+
+### Responsive Design
+- **Vertical Power Bars**: Space-efficient layout eliminating scrolling
+- **Mobile-First**: Works seamlessly across all device sizes
+- **Modern Styling**: Gradient backgrounds and smooth animations
 
 ## Card Structure (YAML Format)
 
@@ -36,22 +64,51 @@ Every card must follow this exact structure:
 
 ```yaml
 id: unique_card_name
-image: placeholder.svg
-description: "The scenario description in German quotation marks."
+image: assets/images/placeholder.svg
+description: "The scenario description in target language with quotation marks."
 left:
   label: "Left choice description"
   effects:
-    - geld: +/-amount
-    - kinder_glueck: +/-amount
-    - eltern_nerven: +/-amount
-    - kinder_gesundheit: +/-amount
+    - power_name: +/-amount
+    - power_name: +/-amount
 right:
   label: "Right choice description"
   effects:
-    - geld: +/-amount
-    - kinder_glueck: +/-amount
-    - eltern_nerven: +/-amount
-    - kinder_gesundheit: +/-amount
+    - power_name: +/-amount
+    - power_name: +/-amount
+```
+
+### Advanced Card Features
+
+```yaml
+id: advanced_card
+image: assets/images/placeholder.svg
+description: "Scenario description."
+left:
+  label: "Choice A"
+  effects:
+    - geld: -50
+    - kinder_glueck: +20
+  follow_up: next_card_id  # Trigger specific next card
+  booster: power_boost_id  # Apply temporary booster
+right:
+  label: "Choice B"
+  effects:
+    - eltern_nerven: -15
+    - kinder_gesundheit: +10
+```
+
+## Story Structure (YAML Format)
+
+Stories create narrative sequences with complex triggering:
+
+```yaml
+id: story_name
+cards: [card1_id, card2_id, card3_id]  # Sequence of story cards
+trigger:
+  after_cards: 5                       # Trigger after N regular cards
+  requires_story_completed: [story_a]  # Require other stories first
+insert_window: 3                       # Inject within next 3 draws
 ```
 
 ## Important Rules
@@ -59,51 +116,90 @@ right:
 ### 1. **ID Naming**
 - Use lowercase letters and underscores only
 - Make it descriptive: `schulzeugnis_schlecht`, `geburtstag_planung`
-- Must be unique across all cards
+- Must be unique across all cards and stories
+- Consider namespace for story cards: `story_name_card1`
 
-### 2. **Image**
-- Always use: `image: placeholder.svg`
-- Never change this line
+### 2. **Image Paths**
+- Use relative paths: `assets/images/placeholder.svg`
+- Consistent with game's asset structure
+- Plan for future image implementation
 
-### 3. **Description**
-- Must be in German
-- Use quotation marks around the entire description
-- Should be 1-3 sentences describing the scenario
-- Make it engaging and relatable for parents
+### 3. **Description Writing**
+- Must be in target language (German for Eltern Simulator)
+- Use quotation marks around entire description
+- 1-3 sentences describing the scenario
+- Create engaging, relatable situations
+- Avoid exposition; focus on immediate choice
 
 ### 4. **Choice Labels**
-- Should be concise (max 6-8 words)
+- Concise (max 6-8 words)
 - Present clear alternatives
-- Use German language
-- Make the choice consequences somewhat predictable
+- Use target language consistently
+- Make consequences somewhat predictable
+- Create meaningful dilemmas
 
 ### 5. **Effects Balance**
 - **Every choice must affect at least 2 powers**
 - Total effect magnitude should be 20-60 points across all powers
 - Create meaningful trade-offs between choices
-- Expensive choices: -50 to -300 geld
-- Normal choices: -10 to -50 geld
-- Small impacts: +/-5 to +/-15
-- Medium impacts: +/-20 to +/-30
-- Large impacts: +/-40 to +/-50
+- **Money Effects:**
+  - Expensive choices: -50 to -300 geld
+  - Normal purchases: -10 to -50 geld
+  - Major financial impact: -100 to -200 geld
+- **Other Powers:**
+  - Small impacts: +/-5 to +/-15
+  - Medium impacts: +/-20 to +/-30
+  - Large impacts: +/-40 to +/-50
+- **Balance Principle**: High cost should provide significant benefit
 
-### 6. **Realistic Scenarios**
+### 6. **Realistic Scenarios for Parenting Game**
 Focus on authentic parenting situations:
-- Morning routines and time pressure
-- School-related issues (grades, homework, bullying)
-- Social conflicts and peer pressure
-- Technology and screen time
-- Money and spending decisions
-- Health and safety choices
-- Family time and activities
-- Discipline and consequences
+- **Daily Routines**: Morning stress, bedtime, meals, chores
+- **School Issues**: Grades, homework, bullying, teacher conflicts
+- **Social Dynamics**: Peer pressure, friendships, social media
+- **Technology**: Screen time, device limits, online safety
+- **Financial Decisions**: Allowance, purchases, expensive activities
+- **Health & Safety**: Medical decisions, risk assessment, accidents
+- **Family Relationships**: Sibling conflicts, quality time, discipline
+- **Development**: Independence, responsibility, life skills
+
+## Advanced Game Design Concepts
+
+### Story Arc Planning
+When designing story sequences:
+
+1. **Introduction**: Set up the narrative scenario
+2. **Development**: Build tension and complexity
+3. **Resolution**: Provide satisfying conclusion
+4. **Consequences**: Show long-term effects
+
+Example story progression:
+```
+Story: "Pet Snake Adventure"
+1. schlange_wunsch (child wants pet snake)
+2. schlangen_begegnung (encounter with actual snake)
+3. [Possible future]: schlange_verantwortung (learning responsibility)
+```
+
+### Power Interaction Design
+Create cards where powers interact meaningfully:
+- **Money vs. Happiness**: Expensive choices that increase joy
+- **Health vs. Freedom**: Safety restrictions vs. child autonomy
+- **Parent Stress vs. Child Satisfaction**: Difficult but rewarding choices
+- **Short-term vs. Long-term**: Immediate gratification vs. future benefits
+
+### Difficulty Progression
+Consider player progression through card design:
+- **Early cards**: Simpler choices, lower stakes
+- **Mid-game**: More complex dilemmas, higher impact
+- **Advanced**: Multiple interconnected consequences
 
 ## Example Cards
 
-### Good Example: Technology Conflict
+### Excellent Example: Technology Conflict
 ```yaml
 id: tablet_zeit_limit
-image: placeholder.svg
+image: assets/images/placeholder.svg
 description: "Ihr Kind hat bereits 3 Stunden am Tablet gespielt und möchte 'nur noch 5 Minuten' weiterspielen. Morgen ist Schule und es sollte eigentlich schon im Bett sein."
 left:
   label: "Sofort ausschalten - Regeln sind Regeln"
@@ -119,10 +215,10 @@ right:
     - kinder_gesundheit: -10
 ```
 
-### Good Example: Financial Decision
+### Excellent Example: Financial Dilemma
 ```yaml
 id: klassenfahrt_teuer
-image: placeholder.svg
+image: assets/images/placeholder.svg
 description: "Die Klassenfahrt kostet 200€ pro Kind. Das ist viel Geld für die Familie, aber Ihr Kind möchte unbedingt mit den Freunden fahren und nicht ausgeschlossen sein."
 left:
   label: "Klassenfahrt bezahlen - Kind soll nicht fehlen"
@@ -139,47 +235,168 @@ right:
     - kinder_gesundheit: +10
 ```
 
+### Example Story Sequence
+```yaml
+# Story definition
+id: smartphone_saga
+cards: [smartphone_bitte, smartphone_vertrag, smartphone_konsequenzen]
+trigger:
+  after_cards: 8
+insert_window: 4
+
+# Card 1: Initial request
+id: smartphone_bitte
+image: assets/images/placeholder.svg
+description: "Ihr 12-jähriges Kind bittet zum dritten Mal diese Woche um ein eigenes Smartphone. Alle Freunde haben schon eins."
+left:
+  label: "Ja, aber mit strengen Regeln"
+  effects:
+    - geld: -300
+    - kinder_glueck: +40
+    - eltern_nerven: -20
+right:
+  label: "Noch nicht alt genug dafür"
+  effects:
+    - kinder_glueck: -30
+    - eltern_nerven: +10
+    - kinder_gesundheit: +15
+
+# Card 2: Responsibility discussion
+id: smartphone_vertrag
+image: assets/images/placeholder.svg
+description: "Nach der Smartphone-Entscheidung müssen klare Regeln aufgestellt werden. Bildschirmzeit, Apps und Kostenkontrolle sind wichtige Themen."
+# ... effects continue the narrative
+```
+
 ## What NOT to Do
 
-❌ **Avoid these mistakes:**
+❌ **Avoid these critical mistakes:**
 
-1. **Unrealistic scenarios**: Alien invasions, magic, fantasy elements
-2. **Extreme situations**: Life-threatening emergencies, serious trauma
-3. **Adult-only content**: Sexual content, violence, drugs, alcohol abuse
-4. **One-sided choices**: Where one choice is obviously always better
-5. **Minimal effects**: Changes less than 5 points total
-6. **Unbalanced effects**: One choice changes 100+ points
-7. **Missing effects**: Choices that don't affect any powers
-8. **Wrong language**: English or other languages (must be German)
-9. **Bad YAML**: Missing quotes, wrong indentation, syntax errors
+### Content Issues
+1. **Unrealistic scenarios**: Fantasy elements, impossible situations
+2. **Extreme situations**: Life-threatening emergencies, serious trauma, abuse
+3. **Adult-only content**: Sexual content, violence, substance abuse
+4. **Cultural insensitivity**: Stereotypes, inappropriate cultural references
+5. **Wrong target audience**: Content inappropriate for family gaming
 
-## Age-Appropriate Content
+### Game Design Issues
+1. **One-sided choices**: Where one choice is obviously always better
+2. **No-win situations**: Both choices purely negative without purpose
+3. **Minimal effects**: Changes less than 10 points total
+4. **Unbalanced effects**: Single choice changes 80+ points
+5. **Missing effects**: Choices that don't affect any powers
+6. **Power violations**: Effects that could push beyond min/max bounds
 
-Since kids will be creating content, ensure scenarios are:
-- ✅ Family-friendly and educational
-- ✅ Realistic parenting challenges
-- ✅ Suitable for children to think about
-- ✅ Teaching good decision-making
-- ❌ No violence, inappropriate content, or scary themes
+### Technical Issues
+1. **Bad YAML syntax**: Missing quotes, wrong indentation, invalid structure
+2. **Wrong language**: Content not matching target language
+3. **Duplicate IDs**: Reusing card or story identifiers
+4. **Missing required fields**: Incomplete card structure
+5. **Asset path errors**: Incorrect image references
 
-## Testing Your Card
+## Quality Assurance Checklist
 
-Before submitting a card, check:
-1. ✅ Valid YAML syntax (proper indentation, quotes)
-2. ✅ Unique ID not used in other cards
-3. ✅ German language throughout
-4. ✅ Both choices affect multiple powers
-5. ✅ Effect totals between 20-60 points
-6. ✅ Realistic parenting scenario
-7. ✅ Meaningful choice trade-offs
+Before submitting content, verify:
 
-## Tips for Kids
+### Technical Validation
+- [ ] ✅ Valid YAML syntax (proper indentation, quotes)
+- [ ] ✅ Unique ID not used in other cards/stories
+- [ ] ✅ Required fields present (id, image, description, left, right)
+- [ ] ✅ Correct asset path format
+- [ ] ✅ Effects use proper power names
 
-When helping kids generate ideas:
-- "What decisions do your parents make that are hard?"
+### Content Quality
+- [ ] ✅ Target language used throughout
+- [ ] ✅ Both choices affect multiple powers (minimum 2)
+- [ ] ✅ Effect totals between 20-60 points per choice
+- [ ] ✅ Realistic, age-appropriate scenario
+- [ ] ✅ Meaningful choice trade-offs
+- [ ] ✅ Engaging, relatable narrative
+
+### Game Balance
+- [ ] ✅ Effects won't cause immediate game over
+- [ ] ✅ Choices present genuine dilemma
+- [ ] ✅ Power changes make thematic sense
+- [ ] ✅ Scenario fits overall game tone
+- [ ] ✅ Complexity appropriate for target audience
+
+## Testing and Validation
+
+### Automated Testing
+The engine includes comprehensive testing:
+```bash
+node tests/test_game.js       # Full game logic validation
+node tests/test_detailed.js   # Story sequence verification
+```
+
+### Manual Testing
+1. Load game: `http://localhost:8000?game=your_game`
+2. Play through multiple scenarios
+3. Verify hover previews show correct values
+4. Test on different device sizes
+5. Confirm story triggers work properly
+
+### Community Feedback
+- Playtest with target audience
+- Gather feedback on choice difficulty
+- Verify cultural appropriateness
+- Check language quality and clarity
+
+## Advanced Topics
+
+### Creating New Game Themes
+To create games beyond parenting simulation:
+
+1. **Define Power System**: 3-5 interconnected resources
+2. **Choose Setting**: Historical, fantasy, modern, etc.
+3. **Identify Core Conflicts**: Central tensions driving choices
+4. **Plan Story Arcs**: Multi-card narratives with progression
+5. **Balance Mechanics**: Ensure engaging risk/reward
+
+### Multi-Language Support
+For international games:
+- Consistent tone and cultural adaptation
+- Regional scenario variations
+- Appropriate cultural references
+- Language-specific power naming
+
+### Accessibility Considerations
+- Clear, simple language
+- Logical choice progression
+- Consistent visual design
+- Screen reader compatibility
+
+## Tips for Collaborative Creation
+
+### Working with Kids
+When helping children generate content ideas:
+- "What decisions do your parents make that seem hard?"
 - "When do you and your parents disagree about something?"
 - "What costs money that kids want but parents worry about?"
-- "What rules do parents have that kids don't always like?"
-- Think about: school, friends, toys, food, bedtime, chores, screen time
+- "What rules do parents have that kids don't always understand?"
+- Focus areas: school, friends, toys, food, bedtime, chores, screen time
 
-Remember: Good cards create interesting dilemmas where both choices have pros and cons, just like real parenting!
+### Working with Educators
+- Align with learning objectives
+- Include real-world skills
+- Promote critical thinking
+- Age-appropriate complexity
+- Cultural sensitivity
+
+### Community Guidelines
+- Family-friendly content standards
+- Collaborative review process
+- Regular content quality audits
+- Clear attribution for contributors
+- Ongoing balance adjustments
+
+## Future Enhancements
+
+The engine supports extensibility for:
+- **Save/Load Systems**: Persistent game progress
+- **Achievement Systems**: Goal-based progression
+- **Dynamic Difficulty**: Adaptive challenge levels
+- **Multiplayer Features**: Collaborative decision-making
+- **Analytics**: Player behavior insights
+
+Remember: Great cards create meaningful dilemmas where both choices have clear pros and cons, reflecting the complexity of real-world decision-making!
