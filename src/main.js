@@ -1,7 +1,7 @@
 // main.js: Entry point, initializes loader, engine, and UI handlers
 import { loadGameConfig } from './loader.js';
 import { Engine } from './engine.js';
-import { renderCard, renderPowers, renderGameOver } from './renderer.js';
+import { renderCard, renderPowers, renderCardCounter, renderGameOver } from './renderer.js';
 
 async function main() {
   const params = new URLSearchParams(window.location.search);
@@ -25,6 +25,7 @@ async function main() {
     return;
   }
   renderPowers(engine.powers);
+  renderCardCounter(engine.cardCount);
   renderCard(card, config);
 
   document.getElementById('left-choice').onclick = () => step('left');
@@ -36,11 +37,13 @@ async function main() {
     console.log(`Triggered stories: ${Array.from(engine.triggeredStories)}`);
     console.log(`Completed stories: ${Array.from(engine.completedStories)}`);
     if (engine.isGameOver()) {
-      renderGameOver();
+      const gameOverInfo = engine.getGameOverInfo();
+      renderGameOver(gameOverInfo);
       return;
     }
     card = engine.draw();
     renderPowers(engine.powers);
+    renderCardCounter(engine.cardCount);
     renderCard(card, config);
   }
 }

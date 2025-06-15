@@ -12,7 +12,9 @@
       "Bash(mv:*)",
       "Bash(grep:*)",
       "Bash(find:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(git commit:*)",
+      "Bash(python:*)"
     ],
     "deny": []
   }

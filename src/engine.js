@@ -35,6 +35,8 @@ export class Engine {
     this.deck = this.deck.filter(id => !storyCardIds.has(id));
     this.shuffleDeck();
     this.history = [];
+    // Card counter for tracking progress
+    this.cardCount = 0;
     // Story tracking: triggered and completed stories by id
     this.triggeredStories = new Set();
     this.completedStories = new Set();
@@ -58,6 +60,7 @@ export class Engine {
       this.shuffleDeck();
     }
     const id = this.deck.shift();
+    this.cardCount++; // Increment card counter on each draw
     return this.config.cards.find(c => c.id === id);
   }
 
@@ -369,5 +372,102 @@ export class Engine {
       // Game over when a power hits its min or its (possibly boosted) cap
       return current <= p.min || current >= cap;
     });
+  }
+
+  getGameOverInfo() {
+    for (const p of this.config.powers) {
+      const current = this.powers[p.name]?.value;
+      const cap = this.applyBoostersOnCap(p.name);
+      
+      if (current <= p.min) {
+        return {
+          power: p.name,
+          value: current,
+          boundary: 'min',
+          scenario: this.getGameOverScenario(p.name, 'min'),
+          cardCount: this.cardCount
+        };
+      }
+      if (current >= cap) {
+        return {
+          power: p.name,
+          value: current,
+          boundary: 'max',
+          scenario: this.getGameOverScenario(p.name, 'max'),
+          cardCount: this.cardCount
+        };
+      }
+    }
+    return null;
+  }
+
+  getGameOverScenario(powerName, boundary) {
+    const scenarios = {
+      geld: {
+        min: [
+          "Der Familienkontostand ist leer. Die Bankkarte wurde vom Automaten eingezogen.",
+          "Ihr Kind fragt nach einem Eis. Du musst ihm erklären, was 'dispo' bedeutet.",
+          "Es kommt ein Brief vom Amt – Nachzahlung. Du hast keine Chance, ihn zu bezahlen.",
+          "Du hast das letzte Kleingeld in die Kita-Spardose geworfen. Für euch bleibt nur Leitungswasser."
+        ],
+        max: [
+          "Du hast so viel gespart, dass dir ein Sparkassenberater einen ETF erklärt.",
+          "Mit dem ganzen Geld könntest du endlich durchatmen – aber irgendwas fühlt sich komisch an…",
+          "Das Konto ist voll, aber dein Kind fragt: 'Warum hast du eigentlich nie Zeit?'",
+          "Ihr lebt minimalistisch – und sitzt auf einem Haufen Geld. Und jetzt?"
+        ]
+      },
+      kinder_glueck: {
+        min: [
+          "Dein Kind sitzt im Zimmer und sagt nichts mehr. Nicht mal beim Pudding.",
+          "Ein trotziges 'Mir doch egal' begleitet euch durch den Alltag.",
+          "Das letzte 'Ich hab dich lieb' ist Wochen her.",
+          "Stille. Kein Streit, kein Lachen. Nur Leere."
+        ],
+        max: [
+          "Dein Kind tanzt auf dem Tisch, ruft 'Alles ist meins!' und verteilt Sticker im Haus.",
+          "Du hast dein ganzes Leben dem Glück deines Kindes untergeordnet. Es feiert – du fällst um.",
+          "Ein Tag ohne 'Ja' wäre für dein Kind jetzt ein Grund zur Revolte.",
+          "Dein Kind ist überglücklich – aber du fragst dich, wann du das letzte Mal geschlafen hast."
+        ]
+      },
+      eltern_nerven: {
+        min: [
+          "Du hast versehentlich mit der Kaffeemaschine telefoniert.",
+          "Du sitzt im Auto und fragst dich: Wohin wollte ich fahren?",
+          "Die Kinder streiten. Du sitzt da und starrst nur noch auf die Wand.",
+          "Ein Blick. Eine Socke auf dem Boden. Du zerbrichst innerlich."
+        ],
+        max: [
+          "Du bist komplett entspannt. Vielleicht zu entspannt. Die Kinder reiten auf dem Hund.",
+          "Alles läuft glatt. Zu glatt. Du beginnst aus Langeweile zu kontrollieren.",
+          "Du hast so viel Energie, dass du drei Bastelprojekte gleichzeitig beginnst.",
+          "Du bist so ausgeruht, dass du der WhatsApp-Gruppe freiwillig geantwortet hast."
+        ]
+      },
+      kinder_gesundheit: {
+        min: [
+          "Das Kind liegt krank im Bett. Du fühlst dich machtlos.",
+          "Dauernd krank, immer wieder. Selbst das Kinderarzt-Wartezimmer kennt euch beim Namen.",
+          "Der Kinderarzt sagt: 'Das müssen wir jetzt wirklich ernst nehmen.'",
+          "Dein Kind fragt: 'Warum bin ich immer müde?' – und du hast keine Antwort."
+        ],
+        max: [
+          "Dein Kind rennt, klettert, turnt – nonstop. Du kommst kaum hinterher.",
+          "Beim Sportfest hat dein Kind alle abgezogen – und verlangt jetzt ein Trainingslager.",
+          "Dein Kind predigt über gesunde Ernährung. Du versteckst den Schokoriegel.",
+          "Topfit, kerngesund – aber wehe, du servierst kein Bio."
+        ]
+      }
+    };
+
+    const powerScenarios = scenarios[powerName];
+    if (!powerScenarios || !powerScenarios[boundary]) {
+      return "Das Elternleben hat Sie an Ihre Grenzen gebracht...";
+    }
+
+    const scenarioList = powerScenarios[boundary];
+    const randomIndex = Math.floor(Math.random() * scenarioList.length);
+    return scenarioList[randomIndex];
   }
 }

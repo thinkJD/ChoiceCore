@@ -31,6 +31,13 @@ export function renderCard(card, config) {
   setupHoverPreview(rightBtn, card.right?.effects || []);
 }
 
+export function renderCardCounter(count) {
+  const counter = document.getElementById('card-counter');
+  if (counter) {
+    counter.textContent = `Karte: ${count}`;
+  }
+}
+
 export function renderPowers(powers) {
   const ICONS = {
     parent_money: '💰',
@@ -144,10 +151,14 @@ function hidePreview() {
   });
 }
 
-export function renderGameOver() {
+export function renderGameOver(gameOverInfo) {
   // Hide choices
   const choices = document.querySelector('.choices');
   if (choices) choices.style.display = 'none';
+  
+  // Hide card counter  
+  const counter = document.getElementById('card-counter');
+  if (counter) counter.style.display = 'none';
   
   // Add game-over styling to card container
   const container = document.getElementById('card-container');
@@ -158,9 +169,47 @@ export function renderGameOver() {
   titleEl.textContent = 'Spiel Beendet';
   titleEl.className = 'card-title';
   container.appendChild(titleEl);
+
+  if (gameOverInfo) {
+    // Power icon mapping
+    const POWER_ICONS = {
+      geld: '💰',
+      kinder_glueck: '😊', 
+      eltern_nerven: '🧠',
+      kinder_gesundheit: '❤️'
+    };
+
+    const POWER_NAMES = {
+      geld: 'Geld',
+      kinder_glueck: 'Kinderglück',
+      eltern_nerven: 'Elternnerven', 
+      kinder_gesundheit: 'Kindergesundheit'
+    };
+
+    // Power info
+    const powerInfoEl = document.createElement('div');
+    powerInfoEl.className = 'game-over-power-info';
+    const icon = POWER_ICONS[gameOverInfo.power] || '⚠️';
+    const powerName = POWER_NAMES[gameOverInfo.power] || gameOverInfo.power;
+    const boundary = gameOverInfo.boundary === 'min' ? 'zu niedrig' : 'zu hoch';
+    powerInfoEl.innerHTML = `<strong>${icon} ${powerName}: ${gameOverInfo.value} (${boundary})</strong>`;
+    container.appendChild(powerInfoEl);
+
+    // Scenario text
+    const scenarioEl = document.createElement('p');
+    scenarioEl.textContent = gameOverInfo.scenario;
+    scenarioEl.className = 'game-over-scenario';
+    container.appendChild(scenarioEl);
+
+    // Card count
+    const statsEl = document.createElement('div');
+    statsEl.className = 'game-over-stats';
+    statsEl.textContent = `Sie haben ${gameOverInfo.cardCount} Karten gespielt.`;
+    container.appendChild(statsEl);
+  }
   
-  const descEl = document.createElement('p');
-  descEl.textContent = 'Ein Wert hat die kritische Grenze erreicht. Ihre Elternreise ist zu Ende! Laden Sie die Seite neu, um erneut zu spielen.';
-  descEl.className = 'card-description';
-  container.appendChild(descEl);
+  const restartEl = document.createElement('p');
+  restartEl.textContent = 'Laden Sie die Seite neu, um erneut zu spielen.';
+  restartEl.className = 'game-over-restart';
+  container.appendChild(restartEl);
 }

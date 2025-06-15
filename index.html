@@ -123,6 +123,17 @@
       flex-shrink: 0;
     }
     
+    #card-counter {
+      background: #f8f9ff;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #2c3e50;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+    
     .power-container {
       display: flex;
       flex-direction: column;
@@ -207,16 +218,62 @@
     }
     
     .game-over {
-      background: linear-gradient(145deg, #fd79a8, #e84393);
+      background: linear-gradient(145deg, #2c3e50, #34495e);
       color: white;
+      padding: 2rem 1.5rem;
     }
     
     .game-over .card-title {
       color: white;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
-    .game-over .card-description {
-      color: rgba(255, 255, 255, 0.9);
+    .game-over-power-info {
+      background: rgba(255, 255, 255, 0.95);
+      color: #2c3e50;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .game-over-scenario {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 1.5rem 0;
+      color: white;
+      font-style: italic;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .game-over-stats {
+      background: rgba(255, 255, 255, 0.9);
+      color: #2c3e50;
+      border-radius: 8px;
+      padding: 0.8rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .game-over-restart {
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 8px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
     
     @keyframes fadeIn {
@@ -267,6 +324,7 @@
 <body>
   <div id="game-root">
     <div id="powers"></div>
+    <div id="card-counter">Karte: 0</div>
     <div id="card-container"></div>
     <div class="choices">
       <button id="left-choice"></button>
