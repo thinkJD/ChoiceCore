@@ -15,9 +15,8 @@ powers:
     max: 100
 load:
   cards:
-    # Regular cards (main deck)
+    # Main deck cards (non-story cards only)
     - "cards/intro.yaml"
-    - "cards/krank_kind.yaml"
     - "cards/putzen_chaos.yaml"
     - "cards/abends_routine.yaml"
     - "cards/familien_urlaub.yaml"
@@ -26,10 +25,6 @@ load:
     - "cards/taschengeld_diskussion.yaml"
     - "cards/hausarbeit_verweigerung.yaml"
     - "cards/fernsehen_streit.yaml"
-    - "cards/smartphone_bitte.yaml"
-    - "cards/internet_sucht.yaml"
-    - "cards/mobbing_schule.yaml"
-    - "cards/teenagerparty.yaml"
     # Standalone supermarkt cards (main deck)
     - "cards/darf_ich_suessigkeiten.yaml"
     - "cards/darf_ich_dosenfisch.yaml"
@@ -48,27 +43,7 @@ load:
     # Standalone kita cards (main deck)
     - "cards/kitafest_mitbringliste.yaml"
     - "cards/personalausfall_kita.yaml"
-    # Story cards (excluded from main deck automatically)
-    - "cards/morgen_stress.yaml"
-    - "cards/hausaufgaben_drama.yaml"
-    - "cards/schlange_wunsch.yaml"
-    - "cards/schlangen_begegnung.yaml"
-    - "cards/geburtstag_planung.yaml"
-    - "cards/party_ort.yaml"
-    - "cards/geschenke_dilemma.yaml"
-    # New story cards
-    - "cards/schlafanzug_supermarkt.yaml"
-    - "cards/kind_schreit_suessigkeiten.yaml"
-    - "cards/darf_ich_chips.yaml"
-    - "cards/kind_findet_rubbellos.yaml"
-    - "cards/einladung_erhalten.yaml"
-    - "cards/whatsapp_gruppen_hoelle.yaml"
-    - "cards/geschenk_organisieren.yaml"
-    - "cards/kostuem_kaufen.yaml"
-    - "cards/kind_krank_vor_party.yaml"
-    - "cards/noro_virus_kita.yaml"
-    - "cards/kind_krank_abholen.yaml"
-    - "cards/kind_hat_gebissen.yaml"
+    # Story cards (trigger + follow-ups) are now embedded in story YAML files
   boosters: []
   stories:
     - "stories/morgen_routine.yaml"

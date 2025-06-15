@@ -1,14 +1,76 @@
 id: kita_alltag
+title: "Kita Alltag"
+description: "Der tägliche Wahnsinn in der Kindertagesstätte bringt immer neue Überraschungen."
 trigger:
   after_cards: 20
   requires_story_completed: [geburtstag_einladung]
-cards:
+trigger_cards:
+  # This card appears in main deck and can trigger the kindergarten daily life story
+  - id: kita_start
+    image: placeholder.svg
+    description: "Ihr Kind geht jetzt in die Kita. 'Mama, ich mag die Kita!' Aber der Alltag dort bringt neue Herausforderungen mit sich."
+    left:
+      label: "Eng mit Erziehern zusammenarbeiten"
+      effects:
+        - kinder_glueck: +15
+        - eltern_nerven: -10
+        - kinder_gesundheit: +10
+      accept_story: kita_alltag
+    right:
+      label: "Kind wird sich schon einleben"
+      effects:
+        - eltern_nerven: +5
+        - kinder_glueck: +5
+      reject_story: kita_alltag
+story_cards:
+  # These cards only appear when the kindergarten daily life story is accepted
   - id: noro_virus_kita
-    probability: 0.40  # 40% chance - happens but not constantly
-    mix_in_next: 18    # Mix into next 18 cards
+    image: placeholder.svg
+    description: "Noro-Virus in der Kita! Drei Kinder sind schon betroffen. Ihr Kind war gestern den ganzen Tag dort."
+    left:
+      label: "Vorsichtshalber zu Hause lassen"
+      effects:
+        - eltern_nerven: -20
+        - kinder_gesundheit: +15
+        - geld: -40
+    right:
+      label: "Normal zur Kita bringen"
+      effects:
+        - kinder_gesundheit: -10
+        - eltern_nerven: +5
+    probability: 0.40
+    mix_in_next: 18
   - id: kind_krank_abholen
-    probability: 0.65  # 65% chance - quite common occurrence
-    mix_in_next: 22    # Mix into next 22 cards
+    image: placeholder.svg
+    description: "Anruf von der Kita: 'Ihr Kind hat Fieber und muss abgeholt werden.' Sie sind mitten in einem wichtigen Meeting."
+    left:
+      label: "Sofort abholen"
+      effects:
+        - eltern_nerven: -25
+        - kinder_gesundheit: +20
+        - geld: -30
+    right:
+      label: "Partner/Familie anrufen"
+      effects:
+        - eltern_nerven: -15
+        - kinder_gesundheit: +10
+        - geld: -15
+    probability: 0.65
+    mix_in_next: 22
   - id: kind_hat_gebissen
-    probability: 0.30  # 30% chance - concerning but not frequent
-    mix_in_next: 25    # Mix into next 25 cards
+    image: placeholder.svg
+    description: "Schwieriges Gespräch mit der Erzieherin: 'Ihr Kind hat heute zwei andere Kinder gebissen.' Das ist peinlich."
+    left:
+      label: "Verhalten zu Hause besprechen"
+      effects:
+        - eltern_nerven: -20
+        - kinder_glueck: -15
+        - kinder_gesundheit: +10
+    right:
+      label: "Professionelle Beratung suchen"
+      effects:
+        - geld: -80
+        - eltern_nerven: -10
+        - kinder_gesundheit: +20
+    probability: 0.30
+    mix_in_next: 25

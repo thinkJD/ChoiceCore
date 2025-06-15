@@ -3,8 +3,75 @@ title: "Kindergeburtstag"
 description: "Die Planung und Durchführung einer Geburtstagsfeier bringt viele Entscheidungen mit sich."
 trigger:
   after_cards: 5
-cards:
-  - geburtstag_planung
-  - party_ort
-  - geschenke_dilemma
-insert_window: 2
+trigger_cards:
+  # This card appears in main deck and can trigger the birthday party story
+  - id: geburtstag_naht
+    image: placeholder.svg
+    description: "Der 6. Geburtstag Ihres Kindes steht bevor. 'Mama, ich möchte eine richtig große Party mit allen aus der Klasse!' Die Planung beginnt..."
+    left:
+      label: "Große Party organisieren"
+      effects:
+        - geld: -100
+        - kinder_glueck: +25
+        - eltern_nerven: -20
+      accept_story: kindergeburtstag
+    right:
+      label: "Kleine Familienfeier"
+      effects:
+        - geld: -30
+        - kinder_glueck: +10
+        - eltern_nerven: +5
+      reject_story: kindergeburtstag
+story_cards:
+  # These cards only appear when the birthday party story is accepted
+  - id: geburtstag_planung
+    image: placeholder.svg
+    description: "Die Geburtstagsplanung läuft auf Hochtouren. 15 Kinder haben zugesagt, aber der Clown hat abgesagt. Das wird stressig."
+    left:
+      label: "Selbst animieren und Spiele organisieren"
+      effects:
+        - eltern_nerven: -25
+        - kinder_glueck: +15
+        - geld: +50
+    right:
+      label: "Schnell einen anderen Entertainer finden"
+      effects:
+        - geld: -80
+        - eltern_nerven: -10
+        - kinder_glueck: +20
+    probability: 0.70
+    mix_in_next: 8
+  - id: party_ort
+    image: placeholder.svg
+    description: "Wo soll die Party stattfinden? Der Garten ist zu klein, aber die Gemeinschaftshalle kostet 150 Euro."
+    left:
+      label: "Gemeinschaftshalle mieten"
+      effects:
+        - geld: -150
+        - eltern_nerven: +10
+        - kinder_glueck: +20
+    right:
+      label: "Kreativ zu Hause feiern"
+      effects:
+        - eltern_nerven: -20
+        - kinder_glueck: +10
+        - geld: +100
+    probability: 0.60
+    mix_in_next: 10
+  - id: geschenke_dilemma
+    image: placeholder.svg
+    description: "Ihr Kind wünscht sich ein 200-Euro-Spielzeug. Alle Freunde bekommen so teure Geschenke. Was tun?"
+    left:
+      label: "Das teure Geschenk kaufen"
+      effects:
+        - geld: -200
+        - kinder_glueck: +30
+        - eltern_nerven: -15
+    right:
+      label: "Mehrere kleinere Geschenke"
+      effects:
+        - geld: -80
+        - kinder_glueck: +20
+        - eltern_nerven: +5
+    probability: 0.85
+    mix_in_next: 12

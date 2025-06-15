@@ -41,6 +41,8 @@ export class Engine {
     // Story acceptance/rejection tracking
     this.acceptedStories = new Set();
     this.rejectedStories = new Set();
+    // Track which stories have had their cards mixed to prevent duplicates
+    this.storyCardsMixed = new Set();
   }
 
   shuffleDeck() {
@@ -127,24 +129,43 @@ export class Engine {
       
       // If story was already triggered but waiting for acceptance, mix cards now
       const story = this.config.stories.find(s => s.id === choice.accept_story);
-      if (story && this.triggeredStories.has(story.id)) {
+      if (story && this.triggeredStories.has(story.id) && !this.storyCardsMixed.has(story.id)) {
         console.log(`🎯 Mixing cards for accepted story: ${story.id}`);
+        this.storyCardsMixed.add(story.id);
+        // Add embedded cards to config when accepting
+        this.addEmbeddedCardsToConfig(story);
         // Handle new probabilistic story format
-        if (Array.isArray(story.cards) && story.cards.length && story.cards[0].probability !== undefined) {
+        const cardsToCheck = story.story_cards || story.cards || [];
+        if (Array.isArray(cardsToCheck) && cardsToCheck.length && cardsToCheck[0].probability !== undefined) {
           this.mixProbabilisticStoryCards(story);
         }
         // Handle old sequential story format (backward compatibility)
-        else if (Array.isArray(story.cards) && story.cards.length) {
+        else {
+          const cardsToMix = story.story_cards || story.cards || [];
+          if (Array.isArray(cardsToMix) && cardsToMix.length) {
           const windowSize = story.insert_window;
           if (Number.isInteger(windowSize) && windowSize > 0) {
-            for (let i = story.cards.length - 1; i >= 0; i--) {
-              const cardId = story.cards[i];
+            for (let i = cardsToMix.length - 1; i >= 0; i--) {
+              const storyCard = cardsToMix[i];
+              const cardId = typeof storyCard === 'string' ? storyCard : storyCard.id;
+              
+              // Card object already added to config by addEmbeddedCardsToConfig
+              
               const maxIdx = Math.min(windowSize, this.deck.length);
               const idx = Math.floor(Math.random() * (maxIdx + 1));
               this.deck.splice(idx, 0, cardId);
             }
           } else {
-            this.deck.unshift(...story.cards);
+            // Add all story cards to the front of the deck
+            for (let i = cardsToMix.length - 1; i >= 0; i--) {
+              const storyCard = cardsToMix[i];
+              const cardId = typeof storyCard === 'string' ? storyCard : storyCard.id;
+              
+              // Card object already added to config by addEmbeddedCardsToConfig
+              
+              this.deck.unshift(cardId);
+            }
+          }
           }
         }
       }
@@ -159,7 +180,7 @@ export class Engine {
     // Handle story completion (mark stories whose last card was just played)
     this.config.stories.forEach(story => {
       if (this.triggeredStories.has(story.id) && !this.completedStories.has(story.id)) {
-        const seq = story.cards || [];
+        const seq = story.story_cards || story.cards || [];
         if (seq.length) {
           // Handle both old format (string) and new format (object with id)
           const lastCard = seq[seq.length - 1];
@@ -190,22 +211,49 @@ export class Engine {
           const hasAcceptanceChoices = this.hasStoryAcceptanceChoices(story.id);
           
           if (!hasAcceptanceChoices || storyAccepted) {
+            this.storyCardsMixed.add(story.id);
+            // Add embedded cards to config when actually mixing
+            this.addEmbeddedCardsToConfig(story);
             // Handle new probabilistic story format
-            if (Array.isArray(story.cards) && story.cards.length && story.cards[0].probability !== undefined) {
+            const cardsToCheck = story.story_cards || story.cards || [];
+            if (Array.isArray(cardsToCheck) && cardsToCheck.length && cardsToCheck[0].probability !== undefined) {
               this.mixProbabilisticStoryCards(story);
             }
             // Handle old sequential story format (backward compatibility)
-            else if (Array.isArray(story.cards) && story.cards.length) {
-              const windowSize = story.insert_window;
-              if (Number.isInteger(windowSize) && windowSize > 0) {
-                for (let i = story.cards.length - 1; i >= 0; i--) {
-                  const cardId = story.cards[i];
+            else {
+              const cardsToMix = story.story_cards || story.cards || [];
+              if (Array.isArray(cardsToMix) && cardsToMix.length) {
+                const windowSize = story.insert_window;
+                if (Number.isInteger(windowSize) && windowSize > 0) {
+                  // Insert cards in reverse order so first card has better chance to appear first
+                  for (let i = cardsToMix.length - 1; i >= 0; i--) {
+                    const storyCard = cardsToMix[i];
+                  const cardId = typeof storyCard === 'string' ? storyCard : storyCard.id;
+                  
+                  // Add embedded card to available cards
+                  if (typeof storyCard === 'object' && storyCard.id) {
+                    this.config.cards.push(storyCard);
+                  }
+                  
                   const maxIdx = Math.min(windowSize, this.deck.length);
                   const idx = Math.floor(Math.random() * (maxIdx + 1));
                   this.deck.splice(idx, 0, cardId);
                 }
               } else {
-                this.deck.unshift(...story.cards);
+                // Add all story cards to the front of the deck in reverse order
+                // (so first card in array appears first when drawn)
+                for (let i = cardsToMix.length - 1; i >= 0; i--) {
+                  const storyCard = cardsToMix[i];
+                  const cardId = typeof storyCard === 'string' ? storyCard : storyCard.id;
+                  
+                  // Add embedded card to available cards
+                  if (typeof storyCard === 'object' && storyCard.id) {
+                    this.config.cards.push(storyCard);
+                  }
+                  
+                  this.deck.unshift(cardId);
+                }
+              }
               }
             }
           } else {
@@ -218,22 +266,83 @@ export class Engine {
     });
   }
 
-  hasStoryAcceptanceChoices(storyId) {
-    // Check if any card has accept_story or reject_story choices for this story
-    return this.config.cards.some(card => {
-      const leftAccepts = card.left?.accept_story === storyId;
-      const leftRejects = card.left?.reject_story === storyId;
-      const rightAccepts = card.right?.accept_story === storyId;
-      const rightRejects = card.right?.reject_story === storyId;
-      return leftAccepts || leftRejects || rightAccepts || rightRejects;
+  addEmbeddedCardsToConfig(story) {
+    // Add story_cards to config when story is triggered
+    const cardsToAdd = story.story_cards || story.cards || [];
+    
+    cardsToAdd.forEach(storyCard => {
+      // Only add full card objects (not string references)
+      if (typeof storyCard === 'object' && storyCard.id) {
+        // Check if card is already in config
+        const exists = this.config.cards.some(c => c.id === storyCard.id);
+        if (!exists) {
+          this.config.cards.push(storyCard);
+          console.log(`📝 Added embedded story card to config: ${storyCard.id}`);
+        }
+      }
     });
+  }
+
+  hasStoryAcceptanceChoices(storyId) {
+    // Check if the story has any trigger cards with accept_story or reject_story choices
+    const story = this.config.stories.find(s => s.id === storyId);
+    if (!story) return false;
+    
+    // Check trigger_cards for acceptance choices
+    if (story.trigger_cards) {
+      const hasAcceptance = story.trigger_cards.some(card => {
+        const leftAccepts = card.left?.accept_story === storyId;
+        const leftRejects = card.left?.reject_story === storyId;
+        const rightAccepts = card.right?.accept_story === storyId;
+        const rightRejects = card.right?.reject_story === storyId;
+        return leftAccepts || leftRejects || rightAccepts || rightRejects;
+      });
+      if (hasAcceptance) return true;
+    }
+    
+    // Check old format cards for backward compatibility
+    if (story.cards) {
+      return story.cards.some(card => {
+        // Handle both old format (string) and new format (full card object)
+        if (typeof card === 'string') return false;
+        
+        const leftAccepts = card.left?.accept_story === storyId;
+        const leftRejects = card.left?.reject_story === storyId;
+        const rightAccepts = card.right?.accept_story === storyId;
+        const rightRejects = card.right?.reject_story === storyId;
+        return leftAccepts || leftRejects || rightAccepts || rightRejects;
+      });
+    }
+    
+    return false;
   }
 
   mixProbabilisticStoryCards(story) {
     console.log(`🎲 Mixing probabilistic story: ${story.id}`);
     
-    story.cards.forEach(storyCard => {
-      const { id: cardId, probability, mix_in_next } = storyCard;
+    // Use story_cards for new format, fallback to cards for old format
+    const cardsToMix = story.story_cards || story.cards || [];
+    
+    cardsToMix.forEach(storyCard => {
+      // Handle both old format (string) and new format (full card object)
+      let cardId, probability, mix_in_next;
+      
+      if (typeof storyCard === 'string') {
+        // Old format: just card ID
+        cardId = storyCard;
+        probability = 1.0; // Default 100% chance
+        mix_in_next = 15; // Default range
+      } else if (storyCard.probability !== undefined) {
+        // New probabilistic format with embedded card
+        cardId = storyCard.id;
+        probability = storyCard.probability;
+        mix_in_next = storyCard.mix_in_next;
+      } else {
+        // New embedded format without probability (sequential)
+        cardId = storyCard.id;
+        probability = 1.0; // Default 100% chance for sequential cards
+        mix_in_next = 15; // Default range
+      }
       
       // Roll for probability
       const roll = Math.random();
@@ -244,6 +353,7 @@ export class Engine {
         const mixRange = Math.min(mix_in_next || 15, this.deck.length);
         const insertPosition = Math.floor(Math.random() * (mixRange + 1));
         
+        // Add card ID to deck (card object already added to config by addEmbeddedCardsToConfig)
         this.deck.splice(insertPosition, 0, cardId);
         console.log(`    ✅ Added ${cardId} at position ${insertPosition} (range: ${mixRange})`);
       } else {

@@ -137,6 +137,30 @@ To test the current game:
 5. Test thoroughly with automated testing suite
 6. Ensure responsive design compatibility
 
+## CURRENT CRITICAL ISSUE - STORY ARCHITECTURE
+
+⚠️ **PROBLEM**: Story cards are still being mixed into the main deck at the beginning, and we still have separate card files when everything should be defined in the story YAML.
+
+**REQUIRED ARCHITECTURE**:
+- ALL story cards (trigger + follow-ups) should be defined ONLY in story YAML files
+- NO story cards should exist in the cards/ directory
+- Main deck should contain ONLY general game cards
+- Story trigger cards should be extracted from stories and added to main deck
+- Story follow-up cards should ONLY appear when story is accepted
+
+**CURRENT PROBLEMS**:
+1. Story cards still exist in cards/ directory
+2. Story cards are being mixed into main deck at start
+3. Cards have no content (empty/broken cards appearing)
+4. Architecture is not truly self-contained
+
+**MUST FIX**:
+1. Remove ALL story cards from cards/ directory
+2. Update game.yaml to not reference any story cards
+3. Ensure loader properly extracts trigger_cards from stories
+4. Test the game thoroughly by actually playing it
+5. Verify no story follow-up cards appear before acceptance
+
 ## Important Implementation Details
 
 - **Story Card Exclusion**: `engine.js` automatically excludes story cards from main deck using `storyCardIds` Set

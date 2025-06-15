@@ -1,20 +1,105 @@
 id: geburtstag_einladung
+title: "Geburtstag Einladung"
+description: "Andere Kindergeburtstage bringen ihre eigenen Herausforderungen mit sich."
 trigger:
   after_cards: 15
   requires_story_completed: [supermarkt_chaos]
-cards:
+trigger_cards:
+  # This card appears in main deck and can trigger the birthday invitation story
+  - id: einladung_bekommen
+    image: placeholder.svg
+    description: "Ihr Kind kommt mit einer Geburtstagseinladung nach Hause. 'Mama, ich MUSS zu Leas Party! Alle anderen gehen auch hin!'"
+    left:
+      label: "Na klar, das wird bestimmt schön"
+      effects:
+        - kinder_glueck: +20
+        - geld: -25
+        - eltern_nerven: -10
+      accept_story: geburtstag_einladung
+    right:
+      label: "Mal schauen, ob wir Zeit haben"
+      effects:
+        - kinder_glueck: -10
+        - eltern_nerven: +5
+      reject_story: geburtstag_einladung
+story_cards:
+  # These cards only appear when the birthday invitation story is accepted
   - id: einladung_erhalten
-    probability: 0.90  # 90% chance - very likely to get invitations
-    mix_in_next: 12    # Mix into next 12 cards
+    image: placeholder.svg
+    description: "Die Einladung ist für einen Indoor-Spielplatz. 25 Kinder, 3 Stunden Programm und Sie müssen mithelfen."
+    left:
+      label: "Gerne helfen - Gemeinschaftsgefühl"
+      effects:
+        - eltern_nerven: -20
+        - kinder_glueck: +15
+    right:
+      label: "Kind abgeben und später abholen"
+      effects:
+        - eltern_nerven: +10
+        - kinder_glueck: +10
+    probability: 0.90
+    mix_in_next: 12
   - id: whatsapp_gruppen_hoelle
-    probability: 0.70  # 70% chance - common parent nightmare
-    mix_in_next: 18    # Mix into next 18 cards  
+    image: placeholder.svg
+    description: "Sie werden zur Klassen-WhatsApp-Gruppe hinzugefügt. 47 Nachrichten über Kuchenbeitrag, Geschenk und wer was mitbringt."
+    left:
+      label: "Aktiv mitdiskutieren"
+      effects:
+        - eltern_nerven: -25
+        - kinder_glueck: +10
+    right:
+      label: "Stumm schalten"
+      effects:
+        - eltern_nerven: +5
+        - kinder_glueck: -5
+    probability: 0.70
+    mix_in_next: 18
   - id: geschenk_organisieren
-    probability: 0.85  # 85% chance - almost always happens
-    mix_in_next: 15    # Mix into next 15 cards
+    image: placeholder.svg
+    description: "Was schenkt man einem Kind, das man nicht kennt? Und wie viel Geld ist angemessen?"
+    left:
+      label: "Bei anderen Eltern nachfragen"
+      effects:
+        - eltern_nerven: -10
+        - geld: -15
+        - kinder_glueck: +5
+    right:
+      label: "Schnell etwas Schönes aussuchen"
+      effects:
+        - geld: -30
+        - eltern_nerven: -5
+    probability: 0.85
+    mix_in_next: 15
   - id: kostuem_kaufen
-    probability: 0.50  # 50% chance - only if costume party
-    mix_in_next: 20    # Mix into next 20 cards
+    image: placeholder.svg
+    description: "'Mama, es ist eine Verkleidungsparty! Ich brauche ein Superhelden-Kostüm!' Das ist um 18 Uhr am Freitag vor der Samstags-Party."
+    left:
+      label: "Notfall-Einkauf im Spielzeugladen"
+      effects:
+        - geld: -45
+        - eltern_nerven: -15
+        - kinder_glueck: +25
+    right:
+      label: "DIY-Kostüm basteln"
+      effects:
+        - eltern_nerven: -30
+        - kinder_glueck: +20
+        - geld: -10
+    probability: 0.50
+    mix_in_next: 20
   - id: kind_krank_vor_party
-    probability: 0.35  # 35% chance - Murphy's law but not always
-    mix_in_next: 25    # Mix into next 25 cards
+    image: placeholder.svg
+    description: "Samstag morgen, 2 Stunden vor der Party: Ihr Kind hat plötzlich Bauchschmerzen. Echt oder vorgetäuscht?"
+    left:
+      label: "Zu Hause bleiben"
+      effects:
+        - kinder_gesundheit: +15
+        - kinder_glueck: -20
+        - eltern_nerven: -10
+    right:
+      label: "Kurz hinfahren und schauen"
+      effects:
+        - kinder_glueck: +15
+        - eltern_nerven: -15
+    probability: 0.35
+    mix_in_next: 25

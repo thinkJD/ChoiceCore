@@ -4,8 +4,73 @@ description: "Eine schwierige Phase mit Mobbing, Parties und Internetsucht forde
 trigger:
   after_cards: 10
   requires_story_completed: ["kindergeburtstag"]
-cards:
-  - mobbing_schule
-  - internet_sucht
-  - teenagerparty
-insert_window: 3
+trigger_cards:
+  # This card appears in main deck and can trigger the teenager crisis story
+  - id: teenager_probleme
+    image: placeholder.svg
+    description: "Ihr Kind ist jetzt 14 Jahre alt und die Probleme werden komplexer. Schule, Freunde, Internet - alles wird schwieriger."
+    left:
+      label: "Offen über Probleme reden"
+      effects:
+        - eltern_nerven: -20
+        - kinder_glueck: +15
+        - kinder_gesundheit: +10
+      accept_story: teenager_krise
+    right:
+      label: "Es wird schon vorbei gehen"
+      effects:
+        - eltern_nerven: +5
+        - kinder_glueck: -10
+      reject_story: teenager_krise
+story_cards:
+  # These cards only appear when the teenager crisis story is accepted
+  - id: mobbing_schule
+    image: placeholder.svg
+    description: "Ihr Teenager kommt weinend nach Hause. 'Sie haben meine Sachen versteckt und mich vor allen anderen bloßgestellt!'"
+    left:
+      label: "Sofort Lehrer kontaktieren"
+      effects:
+        - eltern_nerven: -15
+        - kinder_glueck: +20
+        - kinder_gesundheit: +10
+    right:
+      label: "Zusammen Lösungsstrategien entwickeln"
+      effects:
+        - eltern_nerven: -25
+        - kinder_glueck: +15
+        - kinder_gesundheit: +15
+    probability: 0.40
+    mix_in_next: 15
+  - id: internet_sucht
+    image: placeholder.svg
+    description: "Ihr Teenager verbringt 8 Stunden täglich am Computer. Schule und Freunde werden vernachlässigt."
+    left:
+      label: "Internetzeiten strikt begrenzen"
+      effects:
+        - eltern_nerven: -30
+        - kinder_glueck: -20
+        - kinder_gesundheit: +15
+    right:
+      label: "Professionelle Hilfe suchen"
+      effects:
+        - geld: -100
+        - eltern_nerven: -10
+        - kinder_gesundheit: +25
+    probability: 0.35
+    mix_in_next: 20
+  - id: teenagerparty
+    image: placeholder.svg
+    description: "'Alle gehen zu Max' Party! Bitte, bitte lass mich auch gehen!' Es ist Samstag, die Party geht bis 2 Uhr nachts."
+    left:
+      label: "Um Mitternacht abholen"
+      effects:
+        - eltern_nerven: -15
+        - kinder_glueck: +20
+        - geld: -10
+    right:
+      label: "Zu jung für solche Parties"
+      effects:
+        - eltern_nerven: -25
+        - kinder_glueck: -25
+    probability: 0.60
+    mix_in_next: 18

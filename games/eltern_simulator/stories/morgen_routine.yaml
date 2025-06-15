@@ -1,10 +1,43 @@
 id: morgen_routine
+title: "Die Morgen-Routine"
+description: "Der tägliche Kampf mit dem Aufstehen, Anziehen und Hausaufgaben."
 trigger:
   after_cards: 1
-cards:
+trigger_cards:
+  # This card appears in main deck and can trigger the morning routine story
   - id: morgen_stress
-    probability: 0.85  # 85% chance - very common morning chaos
-    mix_in_next: 8     # Mix into next 8 cards (early game)
-  - id: hausaufgaben_drama  
+    image: placeholder.svg
+    description: "7:00 Uhr morgens. Ihr Kind weigert sich anzuziehen und Sie haben einen wichtigen Termin. Der Kindergarten ruft gleich an."
+    left:
+      label: "Ruhig bleiben und geduldig sein"
+      effects:
+        - eltern_nerven: -10
+        - kinder_glueck: +15
+        - kinder_gesundheit: +5
+      accept_story: morgen_routine
+    right:
+      label: "Schnell, schnell! Wir sind spät dran!"
+      effects:
+        - eltern_nerven: -20
+        - kinder_glueck: -10
+        - geld: -5
+      reject_story: morgen_routine
+story_cards:
+  # This card only appears if the morning routine story is accepted
+  - id: hausaufgaben_drama
+    image: placeholder.svg
+    description: "Hausaufgabenzeit! Ihr Kind sitzt seit einer Stunde vor den Matheaufgaben und hat noch nichts geschafft. Tränen fließen bereits."
+    left:
+      label: "Zusammen die Aufgaben lösen"
+      effects:
+        - eltern_nerven: -15
+        - kinder_glueck: +20
+        - geld: -10
+    right:
+      label: "Nachhilfe organisieren"
+      effects:
+        - geld: -50
+        - kinder_glueck: +10
+        - eltern_nerven: +5
     probability: 0.70  # 70% chance - homework is frequent issue
     mix_in_next: 12    # Mix into next 12 cards

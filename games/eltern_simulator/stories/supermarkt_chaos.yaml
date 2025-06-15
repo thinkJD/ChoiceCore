@@ -1,16 +1,87 @@
 id: supermarkt_chaos
+title: "Supermarkt Chaos"
+description: "Alltägliche Herausforderungen beim Einkaufen mit Kindern."
 trigger:
   after_cards: 10
-cards:
+trigger_cards:
+  # This card appears in main deck and can trigger the supermarket chaos story
+  - id: supermarkt_besuch
+    image: placeholder.svg
+    description: "Wöchentlicher Supermarkt-Besuch steht an. Ihr Kind möchte unbedingt mitkommen, aber Sie wissen, wie das meist endet..."
+    left:
+      label: "Kind mitnehmen - wird schon gutgehen"
+      effects:
+        - eltern_nerven: -10
+        - kinder_glueck: +15
+      accept_story: supermarkt_chaos
+    right:
+      label: "Babysitter organisieren"
+      effects:
+        - geld: -25
+        - eltern_nerven: +10
+      reject_story: supermarkt_chaos
+story_cards:
+  # These cards only appear when the supermarket chaos story is accepted
   - id: schlafanzug_supermarkt
-    probability: 0.75  # 75% chance - common scenario
-    mix_in_next: 15    # Mix into next 15 cards
-  - id: kind_schreit_suessigkeiten  
-    probability: 0.60  # 60% chance - moderately common
-    mix_in_next: 20    # Mix into next 20 cards
+    image: placeholder.svg
+    description: "Ihr Kind läuft plötzlich im Schlafanzug durch den Supermarkt und weigert sich, normale Kleidung anzuziehen. Andere Eltern schauen irritiert."
+    left:
+      label: "Ignorieren und weitermachen"
+      effects:
+        - eltern_nerven: -15
+        - kinder_glueck: +10
+    right:
+      label: "Kind nach Hause bringen"
+      effects:
+        - eltern_nerven: -20
+        - geld: +10
+        - kinder_glueck: -5
+    probability: 0.75
+    mix_in_next: 15
+  - id: kind_schreit_suessigkeiten
+    image: placeholder.svg
+    description: "An der Kasse: 'MAMA, ICH WILL GUMMIBÄRCHEN!' Ihr Kind wirft sich vor allen Leuten auf den Boden. Die Kassiererin schaut mitleidig."
+    left:
+      label: "Gummibärchen kaufen - heute nicht diskutieren"
+      effects:
+        - geld: -5
+        - kinder_glueck: +20
+        - eltern_nerven: +5
+    right:
+      label: "Standhaft bleiben"
+      effects:
+        - eltern_nerven: -25
+        - kinder_glueck: -15
+    probability: 0.60
+    mix_in_next: 20
   - id: darf_ich_chips
-    probability: 0.80  # 80% chance - very common kid request
-    mix_in_next: 25    # Mix into next 25 cards
+    image: placeholder.svg
+    description: "'Mama, darf ich Chips?' Ihr Kind steht vor dem Snack-Regal und bettelt mit großen Augen. Es ist schon die fünfte Nachfrage heute."
+    left:
+      label: "Eine kleine Tüte ist okay"
+      effects:
+        - geld: -3
+        - kinder_glueck: +15
+    right:
+      label: "Nein, wir haben zu Hause Obst"
+      effects:
+        - kinder_glueck: -10
+        - kinder_gesundheit: +5
+    probability: 0.80
+    mix_in_next: 25
   - id: kind_findet_rubbellos
-    probability: 0.25  # 25% chance - rare lucky event
-    mix_in_next: 30    # Mix into next 30 cards
+    image: placeholder.svg
+    description: "Ihr Kind findet ein Rubbellos auf dem Boden. 'Mama, können wir das rubbeln?' Es ist noch unbenutzt."
+    left:
+      label: "Rubbellos abgeben an der Information"
+      effects:
+        - kinder_glueck: -5
+        - eltern_nerven: +5
+    right:
+      label: "Zusammen rubbeln"
+      effects:
+        - geld: +10
+        - kinder_glueck: +20
+        - eltern_nerven: -5
+    probability: 0.25
+    mix_in_next: 30

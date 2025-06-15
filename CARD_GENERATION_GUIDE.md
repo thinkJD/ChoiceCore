@@ -100,47 +100,130 @@ right:
 
 ## Story Structure (YAML Format)
 
-### Probabilistic Stories (Recommended)
+**🆕 FINAL ARCHITECTURE: Self-Contained Stories**
 
-Stories create dynamic narrative experiences with probabilistic card mixing:
+Stories now contain ALL their cards (trigger cards and follow-up cards) in a single YAML file. This provides complete separation between main deck cards and story content.
+
+### Complete Story Definition (Recommended)
+
+Stories define both trigger cards (added to main deck) and story cards (mixed when accepted):
 
 ```yaml
 id: story_name
+title: "Story Title"
+description: "Brief story description"
 trigger:
   after_cards: 10                      # Trigger after N regular cards
   requires_story_completed: [story_a]  # Require other stories first
-cards:
-  - id: story_card_1
-    probability: 0.75                  # 75% chance to appear
-    mix_in_next: 15                    # Mix into next 15 cards
-  - id: story_card_2
-    probability: 0.50                  # 50% chance to appear
-    mix_in_next: 20                    # Mix into next 20 cards
-  - id: rare_event_card
-    probability: 0.25                  # 25% chance (rare event)
-    mix_in_next: 30                    # Mix into next 30 cards
+trigger_cards:
+  # These cards are added to the main deck and can trigger the story
+  - id: story_trigger_card
+    image: placeholder.svg
+    description: "The initial scenario that triggers the story"
+    left:
+      label: "Accept the challenge"
+      effects:
+        - power_name: +/-amount
+      accept_story: story_name          # This choice accepts the story
+    right:
+      label: "Decline politely"
+      effects:
+        - power_name: +/-amount
+      reject_story: story_name          # This choice rejects the story
+story_cards:
+  # These cards are only mixed into deck when story is accepted
+  - id: story_follow_up_1
+    image: placeholder.svg
+    description: "A follow-up scenario"
+    left:
+      label: "Option A"
+      effects:
+        - power_name: +/-amount
+    right:
+      label: "Option B" 
+      effects:
+        - power_name: +/-amount
+    probability: 0.75                   # 75% chance to appear
+    mix_in_next: 15                     # Mix into next 15 cards
+  - id: story_follow_up_2
+    image: placeholder.svg
+    description: "Another follow-up scenario"
+    left:
+      label: "Continue story"
+      effects:
+        - power_name: +/-amount
+    right:
+      label: "End story"
+      effects:
+        - power_name: +/-amount
+    probability: 0.50                   # 50% chance to appear
+    mix_in_next: 20                     # Mix into next 20 cards
 ```
 
-### Legacy Sequential Stories (Backward Compatible)
+### Embedded Sequential Stories
+
+Stories with embedded cards in fixed sequence:
 
 ```yaml
 id: story_name
-cards: [card1_id, card2_id, card3_id]  # Sequence of story cards
+title: "Story Title"
+description: "Brief story description"
+trigger:
+  after_cards: 5                       # Trigger after N regular cards
+  requires_story_completed: [story_a]  # Require other stories first
+cards:
+  - id: story_card_1
+    image: placeholder.svg
+    description: "First card in sequence"
+    left:
+      label: "Choice A"
+      effects:
+        - power_name: +/-amount
+    right:
+      label: "Choice B"
+      effects:
+        - power_name: +/-amount
+  - id: story_card_2
+    image: placeholder.svg
+    description: "Second card in sequence"
+    left:
+      label: "Choice A"
+      effects:
+        - power_name: +/-amount
+    right:
+      label: "Choice B"
+      effects:
+        - power_name: +/-amount
+insert_window: 3                       # Inject within next 3 draws
+```
+
+### Legacy Format (Backward Compatible)
+
+The old format with separate card files is still supported:
+
+```yaml
+id: story_name
+cards: [card1_id, card2_id, card3_id]  # References to separate card files
 trigger:
   after_cards: 5                       # Trigger after N regular cards
   requires_story_completed: [story_a]  # Require other stories first
 insert_window: 3                       # Inject within next 3 draws
 ```
 
-### Probabilistic Story System Benefits
+### Self-Contained Story System Benefits
 
-The new probabilistic system provides:
+The final architecture provides:
 
-- **🎲 Replayability**: Each playthrough has different story experiences
-- **🎯 Realistic Frequency**: Common events (85%) vs rare events (25%)
+- **🔒 Complete Separation**: Story cards never contaminate the main deck
+- **🎯 Logical Flow**: Trigger cards appear in main deck, follow-ups only when accepted
+- **🚫 No Premature Cards**: Story follow-ups never appear before story acceptance
+- **🎮 Choice-Based Progression**: Accept/reject story mechanics work perfectly
+- **📁 Single Source of Truth**: All story content (triggers + follow-ups) in one file
+- **🎲 Probabilistic Mixing**: Story cards have individual appearance chances
 - **📍 Dynamic Positioning**: Cards appear at random positions within specified ranges
 - **⚖️ Balanced Gameplay**: Not all story cards appear every time
 - **🔄 Varied Experiences**: Multiple playthroughs feel unique and fresh
+- **🛠️ Easy Management**: Add/remove entire stories without touching main deck
 
 **Probability Guidelines:**
 - **Very Common (80-90%)**: Daily parenting situations (morning chaos, meal times)
@@ -279,37 +362,68 @@ right:
     - kinder_gesundheit: +10
 ```
 
-### Example Story Sequence
+### Example Self-Contained Story
 ```yaml
-# Story definition
 id: smartphone_saga
-cards: [smartphone_bitte, smartphone_vertrag, smartphone_konsequenzen]
+title: "Das Smartphone-Dilemma"
+description: "Eine Geschichte über den ersten Smartphone-Wunsch und Verantwortung."
 trigger:
   after_cards: 8
-insert_window: 4
-
-# Card 1: Initial request
-id: smartphone_bitte
-image: assets/images/placeholder.svg
-description: "Ihr 12-jähriges Kind bittet zum dritten Mal diese Woche um ein eigenes Smartphone. Alle Freunde haben schon eins."
-left:
-  label: "Ja, aber mit strengen Regeln"
-  effects:
-    - geld: -300
-    - kinder_glueck: +40
-    - eltern_nerven: -20
-right:
-  label: "Noch nicht alt genug dafür"
-  effects:
-    - kinder_glueck: -30
-    - eltern_nerven: +10
-    - kinder_gesundheit: +15
-
-# Card 2: Responsibility discussion
-id: smartphone_vertrag
-image: assets/images/placeholder.svg
-description: "Nach der Smartphone-Entscheidung müssen klare Regeln aufgestellt werden. Bildschirmzeit, Apps und Kostenkontrolle sind wichtige Themen."
-# ... effects continue the narrative
+trigger_cards:
+  # This card appears in the main deck and can trigger the story
+  - id: smartphone_bitte
+    image: placeholder.svg
+    description: "Ihr 12-jähriges Kind bittet zum dritten Mal diese Woche um ein eigenes Smartphone. Alle Freunde haben schon eins."
+    left:
+      label: "Ja, aber mit strengen Regeln"
+      effects:
+        - geld: -300
+        - kinder_glueck: +40
+        - eltern_nerven: -20
+      accept_story: smartphone_saga
+    right:
+      label: "Noch nicht alt genug dafür"
+      effects:
+        - kinder_glueck: -30
+        - eltern_nerven: +10
+        - kinder_gesundheit: +15
+      reject_story: smartphone_saga
+story_cards:
+  # These cards only appear if the smartphone story is accepted
+  - id: smartphone_regeln
+    image: placeholder.svg
+    description: "Nach der Smartphone-Entscheidung müssen klare Regeln aufgestellt werden. Bildschirmzeit, Apps und Kostenkontrolle sind wichtige Themen."
+    left:
+      label: "Strenge Regeln mit Kontrollen"
+      effects:
+        - kinder_glueck: -10
+        - eltern_nerven: +15
+        - kinder_gesundheit: +10
+    right:
+      label: "Vertrauen und Eigenverantwortung"
+      effects:
+        - kinder_glueck: +15
+        - eltern_nerven: -10
+        - kinder_gesundheit: -5
+    probability: 0.80
+    mix_in_next: 12
+  - id: smartphone_probleme
+    image: placeholder.svg
+    description: "Das Smartphone führt zu Konflikten: nächtliche Nutzung, teure Apps und Ablenkung von Hausaufgaben."
+    left:
+      label: "Smartphone temporär einziehen"
+      effects:
+        - kinder_glueck: -25
+        - eltern_nerven: -15
+        - kinder_gesundheit: +20
+    right:
+      label: "Gemeinsam Lösungen finden"
+      effects:
+        - kinder_glueck: +10
+        - eltern_nerven: -10
+        - kinder_gesundheit: +5
+    probability: 0.60
+    mix_in_next: 20
 ```
 
 ## What NOT to Do

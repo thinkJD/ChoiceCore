@@ -26,5 +26,14 @@ export async function loadGameConfig(gameName) {
   config.boosters = await Promise.all((config.load.boosters || []).map(loadYaml));
   config.stories = await Promise.all((config.load.stories || []).map(loadYaml));
 
+  // Extract trigger_cards from stories and add them to main cards collection
+  config.stories.forEach(story => {
+    if (story.trigger_cards) {
+      story.trigger_cards.forEach(triggerCard => {
+        config.cards.push(triggerCard);
+      });
+    }
+  });
+
   return config;
 }

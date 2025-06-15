@@ -4,7 +4,57 @@ description: "Wenn das Kind krank ist, müssen Eltern schwierige Entscheidungen 
 trigger:
   after_cards: 8
   requires_story_completed: ["morgen_routine"]
-cards:
-  - krank_kind
-  - smartphone_bitte
-insert_window: 3
+trigger_cards:
+  # This card appears in main deck and can trigger the sick child story
+  - id: kind_wird_krank
+    image: placeholder.svg
+    description: "Mittwoch, 6:30 Uhr. Ihr Kind hat 39°C Fieber und kann definitiv nicht in die Schule. Sie haben heute ein wichtiges Meeting."
+    left:
+      label: "Zu Hause bleiben und pflegen"
+      effects:
+        - eltern_nerven: -15
+        - kinder_gesundheit: +20
+        - geld: -50
+      accept_story: krankes_kind
+    right:
+      label: "Großeltern anrufen"
+      effects:
+        - geld: -20
+        - kinder_glueck: +10
+        - eltern_nerven: +5
+      reject_story: krankes_kind
+story_cards:
+  # These cards only appear when the sick child story is accepted
+  - id: krank_kind
+    image: placeholder.svg
+    description: "Das Fieber steigt weiter. Ihr Kind ist quengelig und will nur kuscheln. Der Arzttermin ist erst in 3 Stunden."
+    left:
+      label: "Sofort in die Notaufnahme"
+      effects:
+        - eltern_nerven: -20
+        - kinder_gesundheit: +15
+        - geld: -30
+    right:
+      label: "Abwarten bis zum Arzttermin"
+      effects:
+        - eltern_nerven: -10
+        - kinder_gesundheit: +5
+    probability: 0.80
+    mix_in_next: 8
+  - id: smartphone_bitte
+    image: placeholder.svg
+    description: "'Mama, mir ist so langweilig. Kann ich dein Handy haben?' Ihr krankes Kind liegt im Bett und bettelt um Bildschirmzeit."
+    left:
+      label: "Ausnahmsweise Handy geben"
+      effects:
+        - kinder_glueck: +15
+        - eltern_nerven: +10
+        - kinder_gesundheit: -5
+    right:
+      label: "Vorlesen und Gesellschaft leisten"
+      effects:
+        - kinder_glueck: +20
+        - eltern_nerven: -15
+        - kinder_gesundheit: +10
+    probability: 0.65
+    mix_in_next: 12
