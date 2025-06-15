@@ -6,7 +6,7 @@ trigger:
 trigger_cards:
   # This card appears in main deck and can trigger the supermarket chaos story
   - id: supermarkt_besuch
-    image: placeholder.svg
+    image: kid.png
     description: "Wöchentlicher Supermarkt-Besuch steht an. Ihr Kind möchte unbedingt mitkommen, aber Sie wissen, wie das meist endet..."
     left:
       label: "Kind mitnehmen - wird schon gutgehen"
@@ -23,7 +23,7 @@ trigger_cards:
 story_cards:
   # These cards only appear when the supermarket chaos story is accepted
   - id: schlafanzug_supermarkt
-    image: placeholder.svg
+    image: kid.png
     description: "Ihr Kind läuft plötzlich im Schlafanzug durch den Supermarkt und weigert sich, normale Kleidung anzuziehen. Andere Eltern schauen irritiert."
     left:
       label: "Ignorieren und weitermachen"
@@ -39,7 +39,7 @@ story_cards:
     probability: 0.75
     mix_in_next: 15
   - id: kind_schreit_suessigkeiten
-    image: placeholder.svg
+    image: kid.png
     description: "An der Kasse: 'MAMA, ICH WILL GUMMIBÄRCHEN!' Ihr Kind wirft sich vor allen Leuten auf den Boden. Die Kassiererin schaut mitleidig."
     left:
       label: "Gummibärchen kaufen - heute nicht diskutieren"
@@ -55,7 +55,7 @@ story_cards:
     probability: 0.60
     mix_in_next: 20
   - id: darf_ich_chips
-    image: placeholder.svg
+    image: kid.png
     description: "'Mama, darf ich Chips?' Ihr Kind steht vor dem Snack-Regal und bettelt mit großen Augen. Es ist schon die fünfte Nachfrage heute."
     left:
       label: "Eine kleine Tüte ist okay"
@@ -70,7 +70,7 @@ story_cards:
     probability: 0.80
     mix_in_next: 25
   - id: kind_findet_rubbellos
-    image: placeholder.svg
+    image: kid.png
     description: "Ihr Kind findet ein Rubbellos auf dem Boden. 'Mama, können wir das rubbeln?' Es ist noch unbenutzt."
     left:
       label: "Rubbellos abgeben an der Information"

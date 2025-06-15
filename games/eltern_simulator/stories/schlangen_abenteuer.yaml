@@ -6,7 +6,7 @@ trigger:
 trigger_cards:
   # These cards are added to the main deck and can trigger the story
   - id: schlange_wunsch
-    image: placeholder.svg
+    image: kid.png
     description: "Ihr Kind kommt vom Nachbarn zurück und bittet um eine Haustierschlange. 'Alle anderen haben auch coole Haustiere! Eine Schlange ist so interessant!'"
     left:
       label: "Eine Schlange? Warum nicht..."
@@ -25,7 +25,7 @@ trigger_cards:
 story_cards:
   # These cards are only added when the story is accepted
   - id: schlangen_begegnung
-    image: placeholder.svg
+    image: kid.png
     description: "Die Schlange ist da! Ihr Kind ist begeistert, aber die Schlange ist aus dem Terrarium entkommen. Sie finden sie im Badezimmer."
     left:
       label: "Vorsichtig zurück ins Terrarium setzen"

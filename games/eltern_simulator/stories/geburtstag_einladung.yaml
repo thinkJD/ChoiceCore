@@ -7,7 +7,7 @@ trigger:
 trigger_cards:
   # This card appears in main deck and can trigger the birthday invitation story
   - id: einladung_bekommen
-    image: placeholder.svg
+    image: kid.png
     description: "Ihr Kind kommt mit einer Geburtstagseinladung nach Hause. 'Mama, ich MUSS zu Leas Party! Alle anderen gehen auch hin!'"
     left:
       label: "Na klar, das wird bestimmt schön"
@@ -40,7 +40,7 @@ story_cards:
     probability: 0.90
     mix_in_next: 12
   - id: whatsapp_gruppen_hoelle
-    image: placeholder.svg
+    image: chat-group.png
     description: "Sie werden zur Klassen-WhatsApp-Gruppe hinzugefügt. 47 Nachrichten über Kuchenbeitrag, Geschenk und wer was mitbringt."
     left:
       label: "Aktiv mitdiskutieren"
@@ -71,7 +71,7 @@ story_cards:
     probability: 0.85
     mix_in_next: 15
   - id: kostuem_kaufen
-    image: placeholder.svg
+    image: kid.png
     description: "'Mama, es ist eine Verkleidungsparty! Ich brauche ein Superhelden-Kostüm!' Das ist um 18 Uhr am Freitag vor der Samstags-Party."
     left:
       label: "Notfall-Einkauf im Spielzeugladen"
@@ -88,7 +88,7 @@ story_cards:
     probability: 0.50
     mix_in_next: 20
   - id: kind_krank_vor_party
-    image: placeholder.svg
+    image: kid.png
     description: "Samstag morgen, 2 Stunden vor der Party: Ihr Kind hat plötzlich Bauchschmerzen. Echt oder vorgetäuscht?"
     left:
       label: "Zu Hause bleiben"

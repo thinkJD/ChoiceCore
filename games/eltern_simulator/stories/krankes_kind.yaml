@@ -7,7 +7,7 @@ trigger:
 trigger_cards:
   # This card appears in main deck and can trigger the sick child story
   - id: kind_wird_krank
-    image: placeholder.svg
+    image: kid.png
     description: "Mittwoch, 6:30 Uhr. Ihr Kind hat 39°C Fieber und kann definitiv nicht in die Schule. Sie haben heute ein wichtiges Meeting."
     left:
       label: "Zu Hause bleiben und pflegen"
@@ -26,7 +26,7 @@ trigger_cards:
 story_cards:
   # These cards only appear when the sick child story is accepted
   - id: krank_kind
-    image: placeholder.svg
+    image: kid.png
     description: "Das Fieber steigt weiter. Ihr Kind ist quengelig und will nur kuscheln. Der Arzttermin ist erst in 3 Stunden."
     left:
       label: "Sofort in die Notaufnahme"
@@ -42,7 +42,7 @@ story_cards:
     probability: 0.80
     mix_in_next: 8
   - id: smartphone_bitte
-    image: placeholder.svg
+    image: kid.png
     description: "'Mama, mir ist so langweilig. Kann ich dein Handy haben?' Ihr krankes Kind liegt im Bett und bettelt um Bildschirmzeit."
     left:
       label: "Ausnahmsweise Handy geben"

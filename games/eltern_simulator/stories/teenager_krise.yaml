@@ -7,7 +7,7 @@ trigger:
 trigger_cards:
   # This card appears in main deck and can trigger the teenager crisis story
   - id: teenager_probleme
-    image: placeholder.svg
+    image: kid.png
     description: "Ihr Kind ist jetzt 14 Jahre alt und die Probleme werden komplexer. Schule, Freunde, Internet - alles wird schwieriger."
     left:
       label: "Offen über Probleme reden"
@@ -25,7 +25,7 @@ trigger_cards:
 story_cards:
   # These cards only appear when the teenager crisis story is accepted
   - id: mobbing_schule
-    image: placeholder.svg
+    image: kindergarten-teacher.png
     description: "Ihr Teenager kommt weinend nach Hause. 'Sie haben meine Sachen versteckt und mich vor allen anderen bloßgestellt!'"
     left:
       label: "Sofort Lehrer kontaktieren"
@@ -42,7 +42,7 @@ story_cards:
     probability: 0.40
     mix_in_next: 15
   - id: internet_sucht
-    image: placeholder.svg
+    image: kid.png
     description: "Ihr Teenager verbringt 8 Stunden täglich am Computer. Schule und Freunde werden vernachlässigt."
     left:
       label: "Internetzeiten strikt begrenzen"
@@ -59,7 +59,7 @@ story_cards:
     probability: 0.35
     mix_in_next: 20
   - id: teenagerparty
-    image: placeholder.svg
+    image: kid.png
     description: "'Alle gehen zu Max' Party! Bitte, bitte lass mich auch gehen!' Es ist Samstag, die Party geht bis 2 Uhr nachts."
     left:
       label: "Um Mitternacht abholen"

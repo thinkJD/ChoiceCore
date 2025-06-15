@@ -1,5 +1,5 @@
 id: keine_startzeit
-image: assets/images/placeholder.svg
+image: chat-group.png
 description: "Auf der Einladung steht kein Datum und keine Uhrzeit. In der WhatsApp-Gruppe wird darüber diskutiert, aber Sie haben es verpasst. Die Party ist morgen."
 left:
   label: "In der Gruppe nachfragen (peinlich!)"
