@@ -6,7 +6,7 @@ trigger:
 trigger_cards:
   # This card appears in main deck and can trigger the morning routine story
   - id: morgen_stress
-    image: placeholder.svg
+    image: kid.png
     description: "7:00 Uhr morgens. Ihr Kind weigert sich anzuziehen und Sie haben einen wichtigen Termin. Der Kindergarten ruft gleich an."
     left:
       label: "Ruhig bleiben und geduldig sein"
@@ -25,7 +25,7 @@ trigger_cards:
 story_cards:
   # This card only appears if the morning routine story is accepted
   - id: hausaufgaben_drama
-    image: placeholder.svg
+    image: kid.png
     description: "Hausaufgabenzeit! Ihr Kind sitzt seit einer Stunde vor den Matheaufgaben und hat noch nichts geschafft. Tränen fließen bereits."
     left:
       label: "Zusammen die Aufgaben lösen"

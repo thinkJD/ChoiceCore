@@ -7,7 +7,7 @@ trigger:
 trigger_cards:
   # This card appears in main deck and can trigger the kindergarten daily life story
   - id: kita_start
-    image: placeholder.svg
+    image: kindergarten-teacher.png
     description: "Ihr Kind geht jetzt in die Kita. 'Mama, ich mag die Kita!' Aber der Alltag dort bringt neue Herausforderungen mit sich."
     left:
       label: "Eng mit Erziehern zusammenarbeiten"
@@ -25,7 +25,7 @@ trigger_cards:
 story_cards:
   # These cards only appear when the kindergarten daily life story is accepted
   - id: noro_virus_kita
-    image: placeholder.svg
+    image: kindergarten-teacher.png
     description: "Noro-Virus in der Kita! Drei Kinder sind schon betroffen. Ihr Kind war gestern den ganzen Tag dort."
     left:
       label: "Vorsichtshalber zu Hause lassen"
@@ -41,7 +41,7 @@ story_cards:
     probability: 0.40
     mix_in_next: 18
   - id: kind_krank_abholen
-    image: placeholder.svg
+    image: kindergarten-teacher.png
     description: "Anruf von der Kita: 'Ihr Kind hat Fieber und muss abgeholt werden.' Sie sind mitten in einem wichtigen Meeting."
     left:
       label: "Sofort abholen"
@@ -58,7 +58,7 @@ story_cards:
     probability: 0.65
     mix_in_next: 22
   - id: kind_hat_gebissen
-    image: placeholder.svg
+    image: kindergarten-teacher.png
     description: "Schwieriges Gespräch mit der Erzieherin: 'Ihr Kind hat heute zwei andere Kinder gebissen.' Das ist peinlich."
     left:
       label: "Verhalten zu Hause besprechen"
