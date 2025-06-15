@@ -1,0 +1,16 @@
+{
+  "name": "choicecore",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "**ChoiceCore** is a minimalist game engine for building narrative games with binary choices — think *Reigns*, but config-driven and plugin-friendly.",
+  "main": "test_game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.53.0"
+  }
+}
