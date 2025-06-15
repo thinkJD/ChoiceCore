@@ -25,7 +25,11 @@ export class Engine {
     const storyCardIds = new Set();
     this.config.stories.forEach(story => {
       if (story.cards) {
-        story.cards.forEach(cardId => storyCardIds.add(cardId));
+        story.cards.forEach(card => {
+          // Handle both old format (string) and new format (object with id)
+          const cardId = typeof card === 'string' ? card : card.id;
+          storyCardIds.add(cardId);
+        });
       }
     });
     this.deck = this.deck.filter(id => !storyCardIds.has(id));
@@ -34,6 +38,9 @@ export class Engine {
     // Story tracking: triggered and completed stories by id
     this.triggeredStories = new Set();
     this.completedStories = new Set();
+    // Story acceptance/rejection tracking
+    this.acceptedStories = new Set();
+    this.rejectedStories = new Set();
   }
 
   shuffleDeck() {
@@ -112,14 +119,54 @@ export class Engine {
       const booster = this.config.boosters.find(b => b.id === choice.booster);
       if (booster) this.activeBoosters.push({ ...booster, remaining: booster.duration });
     }
+    
+    // Handle story acceptance/rejection based on player choice
+    if (choice.accept_story) {
+      console.log(`✅ Player accepted story: ${choice.accept_story}`);
+      this.acceptedStories.add(choice.accept_story);
+      
+      // If story was already triggered but waiting for acceptance, mix cards now
+      const story = this.config.stories.find(s => s.id === choice.accept_story);
+      if (story && this.triggeredStories.has(story.id)) {
+        console.log(`🎯 Mixing cards for accepted story: ${story.id}`);
+        // Handle new probabilistic story format
+        if (Array.isArray(story.cards) && story.cards.length && story.cards[0].probability !== undefined) {
+          this.mixProbabilisticStoryCards(story);
+        }
+        // Handle old sequential story format (backward compatibility)
+        else if (Array.isArray(story.cards) && story.cards.length) {
+          const windowSize = story.insert_window;
+          if (Number.isInteger(windowSize) && windowSize > 0) {
+            for (let i = story.cards.length - 1; i >= 0; i--) {
+              const cardId = story.cards[i];
+              const maxIdx = Math.min(windowSize, this.deck.length);
+              const idx = Math.floor(Math.random() * (maxIdx + 1));
+              this.deck.splice(idx, 0, cardId);
+            }
+          } else {
+            this.deck.unshift(...story.cards);
+          }
+        }
+      }
+    }
+    if (choice.reject_story) {
+      console.log(`❌ Player rejected story: ${choice.reject_story}`);
+      this.rejectedStories.add(choice.reject_story);
+    }
+    
     this.updateBoosters();
     this.history.push({ card: card.id, choice: direction });
     // Handle story completion (mark stories whose last card was just played)
     this.config.stories.forEach(story => {
       if (this.triggeredStories.has(story.id) && !this.completedStories.has(story.id)) {
         const seq = story.cards || [];
-        if (seq.length && seq[seq.length - 1] === card.id) {
-          this.completedStories.add(story.id);
+        if (seq.length) {
+          // Handle both old format (string) and new format (object with id)
+          const lastCard = seq[seq.length - 1];
+          const lastCardId = typeof lastCard === 'string' ? lastCard : lastCard.id;
+          if (lastCardId === card.id) {
+            this.completedStories.add(story.id);
+          }
         }
       }
     });
@@ -131,27 +178,54 @@ export class Engine {
         const haveReq = Array.isArray(req) && req.every(r => this.completedStories.has(r));
         if ((after == null || this.history.length >= after) && haveReq) {
           
-          // Handle new probabilistic story format
-          if (Array.isArray(story.cards) && story.cards.length && story.cards[0].probability !== undefined) {
-            this.mixProbabilisticStoryCards(story);
+          // Check if story has been explicitly rejected
+          if (this.rejectedStories.has(story.id)) {
+            console.log(`🚫 Story ${story.id} was rejected by player - skipping card mixing`);
+            this.triggeredStories.add(story.id);
+            return;
           }
-          // Handle old sequential story format (backward compatibility)
-          else if (Array.isArray(story.cards) && story.cards.length) {
-            const windowSize = story.insert_window;
-            if (Number.isInteger(windowSize) && windowSize > 0) {
-              for (let i = story.cards.length - 1; i >= 0; i--) {
-                const cardId = story.cards[i];
-                const maxIdx = Math.min(windowSize, this.deck.length);
-                const idx = Math.floor(Math.random() * (maxIdx + 1));
-                this.deck.splice(idx, 0, cardId);
-              }
-            } else {
-              this.deck.unshift(...story.cards);
+          
+          // Only mix cards if story is accepted OR has no acceptance requirement
+          const storyAccepted = this.acceptedStories.has(story.id);
+          const hasAcceptanceChoices = this.hasStoryAcceptanceChoices(story.id);
+          
+          if (!hasAcceptanceChoices || storyAccepted) {
+            // Handle new probabilistic story format
+            if (Array.isArray(story.cards) && story.cards.length && story.cards[0].probability !== undefined) {
+              this.mixProbabilisticStoryCards(story);
             }
+            // Handle old sequential story format (backward compatibility)
+            else if (Array.isArray(story.cards) && story.cards.length) {
+              const windowSize = story.insert_window;
+              if (Number.isInteger(windowSize) && windowSize > 0) {
+                for (let i = story.cards.length - 1; i >= 0; i--) {
+                  const cardId = story.cards[i];
+                  const maxIdx = Math.min(windowSize, this.deck.length);
+                  const idx = Math.floor(Math.random() * (maxIdx + 1));
+                  this.deck.splice(idx, 0, cardId);
+                }
+              } else {
+                this.deck.unshift(...story.cards);
+              }
+            }
+          } else {
+            console.log(`⏳ Story ${story.id} waiting for player acceptance`);
           }
+          
           this.triggeredStories.add(story.id);
         }
       }
+    });
+  }
+
+  hasStoryAcceptanceChoices(storyId) {
+    // Check if any card has accept_story or reject_story choices for this story
+    return this.config.cards.some(card => {
+      const leftAccepts = card.left?.accept_story === storyId;
+      const leftRejects = card.left?.reject_story === storyId;
+      const rightAccepts = card.right?.accept_story === storyId;
+      const rightRejects = card.right?.reject_story === storyId;
+      return leftAccepts || leftRejects || rightAccepts || rightRejects;
     });
   }
 
