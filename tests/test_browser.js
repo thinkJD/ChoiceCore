@@ -18,7 +18,7 @@ async function testGame() {
 
   try {
     console.log('📖 Loading game page...');
-    await page.goto('http://localhost:8002/?game=eltern_simulator', { 
+    await page.goto('http://localhost:3000/?game=eltern_simulator', { 
       waitUntil: 'networkidle',
       timeout: 10000 
     });

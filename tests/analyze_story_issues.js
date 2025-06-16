@@ -31,7 +31,7 @@ async function analyzeStoryIssues() {
   });
 
   try {
-    await page.goto('http://localhost:8002/?game=eltern_simulator');
+    await page.goto('http://localhost:3000/?game=eltern_simulator');
     await page.waitForSelector('#game-root');
     
     // Play 12 rounds and track issues

@@ -1,13 +1,13 @@
 // Simple test script to check game functionality
-const testGameURL = 'http://localhost:8002/?game=eltern_simulator';
+const testGameURL = 'http://localhost:3000/?game=eltern_simulator';
 
 console.log('Testing Eltern Simulator...');
 
 // Test 1: Check if page loads
-fetch('http://localhost:8002/')
+fetch('http://localhost:3000/')
   .then(response => {
     console.log('✓ Server responds:', response.status);
-    return fetch('http://localhost:8002/games/eltern_simulator/game.yaml');
+    return fetch('http://localhost:3000/games/eltern_simulator/game.yaml');
   })
   .then(response => response.text())
   .then(yamlText => {
@@ -15,7 +15,7 @@ fetch('http://localhost:8002/')
     console.log('First few lines:', yamlText.split('\n').slice(0, 5));
     
     // Test card files
-    return fetch('http://localhost:8002/games/eltern_simulator/cards/intro.yaml');
+    return fetch('http://localhost:3000/games/eltern_simulator/cards/intro.yaml');
   })
   .then(response => response.text())
   .then(cardText => {
@@ -23,7 +23,7 @@ fetch('http://localhost:8002/')
     console.log('Card content preview:', cardText.split('\n').slice(0, 3));
     
     // Check if JS modules can be loaded
-    return fetch('http://localhost:8002/src/main.js');
+    return fetch('http://localhost:3000/src/main.js');
   })
   .then(response => response.text())
   .then(jsText => {

@@ -18,7 +18,7 @@ async function visualTest() {
     console.log(`\n📏 Testing ${viewport.name} (${viewport.width}x${viewport.height})`);
     
     await page.setViewportSize(viewport);
-    await page.goto('http://localhost:8002/?game=eltern_simulator');
+    await page.goto('http://localhost:3000/?game=eltern_simulator');
     await page.waitForSelector('#game-root');
     
     // Check if scrolling is needed

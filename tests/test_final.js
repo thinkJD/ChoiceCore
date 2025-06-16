@@ -10,7 +10,7 @@ async function testFinal() {
   page.on('pageerror', error => console.log(`❌ ERROR: ${error.message}`));
   
   try {
-    await page.goto('http://localhost:8002/?game=eltern_simulator');
+    await page.goto('http://localhost:3000/?game=eltern_simulator');
     await page.waitForTimeout(3000);
     
     console.log('🎮 Starting game...');
