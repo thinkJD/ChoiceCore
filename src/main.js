@@ -6,10 +6,6 @@ import { renderCard, renderPowers, renderCardCounter, renderGameOver } from './r
 async function main() {
   const params = new URLSearchParams(window.location.search);
   const game = params.get('game') || 'eltern_simulator';
-  if (!game) {
-    document.body.textContent = 'No game specified. Use ?game=game_name';
-    return;
-  }
   let config;
   try {
     config = await loadGameConfig(game);
