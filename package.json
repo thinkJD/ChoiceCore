@@ -12,5 +12,21 @@
   "license": "ISC",
   "devDependencies": {
     "playwright": "^1.53.0"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "playwright-core": "^1.53.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkJD/ChoiceCore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thinkJD/ChoiceCore/issues"
+  },
+  "homepage": "https://github.com/thinkJD/ChoiceCore#readme"
 }
