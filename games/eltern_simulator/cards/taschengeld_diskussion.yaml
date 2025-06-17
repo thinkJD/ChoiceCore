@@ -1,11 +1,12 @@
 id: taschengeld_diskussion
 image: kid.png
+title: "Leon fragt nach mehr Taschengeld"
 description: "Ihr Kind findet sein Taschengeld von 5€ pro Woche viel zu wenig. Alle Freunde bekommen mehr Geld und können sich coole Sachen kaufen."
 left:
   label: "Taschengeld auf 10€ erhöhen"
   effects:
-    - geld: -20
-    - kinder_glueck: +25
+    - geld: -15
+    - kinder_glueck: +15
     - eltern_nerven: +5
 right:
   label: "Bei 5€ bleiben und Wert des Geldes erklären"

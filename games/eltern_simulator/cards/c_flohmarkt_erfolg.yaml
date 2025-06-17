@@ -1,15 +1,16 @@
 id: c_flohmarkt_erfolg
 image: placeholder.svg
+title: "Erfolgreicher Flohmarkt"
 description: "Der Flohmarkt-Verkauf alter Kindersachen war ein voller Erfolg! Sie haben viel mehr eingenommen als erwartet und das Kind freut sich über den aufgeräumten Raum."
 left:
   label: "Geld für Familienaktivitäten verwenden"
   effects:
-    - geld: +20
-    - kinder_glueck: +15
+    - geld: +15
+    - kinder_glueck: +10
     - eltern_nerven: +10
 right:
   label: "Geld für schlechte Zeiten zur Seite legen"
   effects:
-    - geld: +25
-    - eltern_nerven: +20
+    - geld: +15
+    - eltern_nerven: +15
     - kinder_gesundheit: +5

@@ -1,16 +1,17 @@
 id: c_kindergeld_bonus
 image: placeholder.svg
+title: "Finanzielle Überraschung"
 description: "Überraschung! Sie erhalten eine Kindergeld-Nachzahlung vom Amt und die Großeltern schicken einen Umschlag mit Geld zum Geburtstag Ihres Kindes."
 left:
   label: "Geld für Notfälle sparen"
   effects:
-    - geld: +25
+    - geld: +15
     - eltern_nerven: +15
     - kinder_glueck: +5
 right:
   label: "Spontanes Familienerlebnis planen"
   effects:
-    - geld: +15
-    - kinder_glueck: +20
+    - geld: +10
+    - kinder_glueck: +15
     - eltern_nerven: +10
     - kinder_gesundheit: +10

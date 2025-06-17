@@ -1,15 +1,15 @@
 id: darf_ich_kuscheltier
 image: kid.png
+title: "Mia sieht ein Kuscheltier"
 description: "Im Supermarkt gibt es eine kleine Auswahl an Kuscheltieren. Ihr Kind umarmt einen kleinen Teddybär: 'Der ist so süß! Darf ich den haben?'"
 left:
   label: "Okay, eins darf mit"
   effects:
     - geld: -12
-    - kinder_glueck: +25
+    - kinder_glueck: +15
     - eltern_nerven: +5
 right:
   label: "Nein, wir haben genug Kuscheltiere"
   effects:
-    - kinder_glueck: -20
+    - kinder_glueck: -15
     - eltern_nerven: -10
-    - geld: +0

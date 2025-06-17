@@ -1,11 +1,12 @@
 id: hausarbeit_verweigerung
 image: kid.png
+title: "Noah verweigert Hausarbeit"
 description: "Seit Wochen weigert sich Ihr Kind, bei der Hausarbeit zu helfen. 'Das machen doch die Erwachsenen!' ist die Standardantwort auf jede Bitte."
 left:
   label: "Belohnungssystem mit Taschengeld einführen"
   effects:
     - geld: -10
-    - kinder_glueck: +20
+    - kinder_glueck: +15
     - eltern_nerven: +15
 right:
   label: "Konsequent bleiben ohne Belohnung"

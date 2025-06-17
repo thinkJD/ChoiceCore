@@ -39,7 +39,7 @@ games/
 ## Key Concepts
 
 - **Cards**: Binary choices (left/right) with effects that modify powers. Support German text and complex scenarios.
-- **Powers**: Numeric values with configurable min/max bounds (e.g., geld: 0-500, others: 0-100)
+- **Powers**: Numeric values with configurable min/max bounds (all powers: 0-100)
 - **Stories**: Card sequences triggered by conditions (`after_cards`, `requires_story_completed`) with proper insertion logic
 - **Story Completion Tracking**: Stories marked complete when final card is played, enabling complex dependencies
 - **Hover Previews**: Real-time display of power changes with color-coded feedback (green/red)
@@ -106,7 +106,7 @@ The game implements sophisticated German parenting scenarios with authentic lang
 4. Complex birthday party sequence with multiple dependencies
 
 **Power Management:**
-- `geld`: 0-500 (money for family expenses)
+- `geld`: 0-100 (money for family expenses)
 - `kinder_glueck`: 0-100 (children's happiness and satisfaction)
 - `eltern_nerven`: 0-100 (parent's stress and patience levels)
 - `kinder_gesundheit`: 0-100 (children's physical and mental health)
@@ -122,7 +122,7 @@ To test the current game:
 ## YAML Schema Notes
 
 - All file references in `game.yaml` must be explicit manifests (no auto-discovery)
-- Powers support custom min/max values: `{name: geld, min: 0, max: 500}`
+- Powers support custom min/max values: `{name: geld, min: 0, max: 100}`
 - Card effects use object syntax: `{power_name: +/-value}` or `{power_name: value}`
 - Story triggers support `after_cards` count and `requires_story_completed` arrays
 - Story cards are automatically excluded from main deck during engine initialization

@@ -1,16 +1,17 @@
 id: ueberschneidung_arbeit
 image: boss.png
+title: "Herr Schneider ist unzufrieden"
 description: "Die Geburtstagsparty ist genau dann, wenn Sie eigentlich arbeiten müssen. Ihr Chef ist nicht begeistert von kurzfristigen Änderungen."
 left:
   label: "Kurzfristig Urlaub nehmen"
   effects:
-    - geld: -30
-    - kinder_glueck: +25
+    - geld: -20
+    - kinder_glueck: +15
     - eltern_nerven: -15
 right:
   label: "Andere Betreuung organisieren"
   effects:
-    - geld: -15
+    - geld: -10
     - kinder_glueck: +10
-    - eltern_nerven: -20
+    - eltern_nerven: -15
     - kinder_gesundheit: +10

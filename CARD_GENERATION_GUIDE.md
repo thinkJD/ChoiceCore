@@ -17,9 +17,9 @@ This guide provides comprehensive instructions for Large Language Models (LLMs) 
 
 ## Power System (Resources)
 
-The game tracks four powers that must stay within bounds (0-100 for most, 0-500 for money):
+The game tracks four powers that must stay within bounds (all 0-100):
 
-### 💰 **geld** (Money: 0-500)
+### 💰 **geld** (Money: 0-100)
 - Represents family financial resources
 - Lost through: purchases, medical expenses, activities, gifts, missed work
 - Gained through: saving money, avoiding expenses, working extra, smart financial choices

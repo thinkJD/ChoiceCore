@@ -1,0 +1,1 @@
+- use npx serve to run the server

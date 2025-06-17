@@ -1,16 +1,17 @@
 id: familien_urlaub
 image: placeholder.svg
+title: "Emma träumt von Disney World"
 description: "Die Sommerferien stehen vor der Tür. Ihr Kind träumt von einem teuren Urlaub in Disney World, aber das Familienbugdet ist knapp und Sie brauchen eine neue Waschmaschine."
 left:
   label: "Disney World - Träume sollte man erfüllen"
   effects:
-    - geld: -35
-    - kinder_glueck: +25
+    - geld: -25
+    - kinder_glueck: +15
     - eltern_nerven: -15
 right:
   label: "Camping am See - günstig und entspannt"
   effects:
-    - geld: -15
+    - geld: -10
     - kinder_glueck: +10
     - eltern_nerven: +20
     - kinder_gesundheit: +15

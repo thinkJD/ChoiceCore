@@ -1,15 +1,16 @@
 id: schlechte_noten
 image: kindergarten-teacher.png
+title: "Frau Weber zeigt das Zeugnis"
 description: "Das Zeugnis ist da: drei Fünfen und eine Sechs in Mathe. Ihr Kind meint, der Lehrer mag es nicht und die Aufgaben seien zu schwer. Der Nachbar empfiehlt teure Privatschule."
 left:
   label: "Wechsel zur Privatschule"
   effects:
-    - geld: -40
-    - kinder_glueck: +20
+    - geld: -20
+    - kinder_glueck: +15
     - eltern_nerven: +10
 right:
   label: "Intensive Förderung zu Hause"
   effects:
     - eltern_nerven: -20
-    - kinder_glueck: +15
+    - kinder_glueck: +10
     - geld: -10
