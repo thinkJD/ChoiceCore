@@ -3,7 +3,7 @@ entry_card: intro
 powers:
   - name: geld
     min: 0
-    max: 500
+    max: 100
   - name: kinder_glueck
     min: 0
     max: 100
