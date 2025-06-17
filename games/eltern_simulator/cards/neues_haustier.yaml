@@ -1,0 +1,17 @@
+id: neues_haustier
+image: kid.png
+title: "Anna wünscht sich ein Haustier"
+description: "Seit Wochen bettelt Ihr Kind: 'Alle meine Freunde haben Haustiere! Kann ich bitte einen Hamster haben? Ich kümmere mich auch ganz alleine darum!'"
+left:
+  label: "Einen Hamster können wir versuchen"
+  effects:
+    - geld: -15
+    - kinder_glueck: +15
+    - eltern_nerven: -12
+    - kinder_gesundheit: +8
+right:
+  label: "Noch zu früh für Haustiere"
+  effects:
+    - kinder_glueck: -12
+    - eltern_nerven: +8
+    - geld: +5

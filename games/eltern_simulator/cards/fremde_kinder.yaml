@@ -1,0 +1,16 @@
+id: fremde_kinder
+image: kid.png
+title: "Fremde Kinder ärgern Sarah"
+description: "Im Park ärgern zwei größere Kinder Ihr Kind: 'Du bist zu klein für die Schaukel!' Ihr Kind kommt weinend angerannt. Die anderen Eltern sind nicht zu sehen."
+left:
+  label: "Die Kinder direkt ansprechen"
+  effects:
+    - kinder_glueck: +15
+    - eltern_nerven: -8
+    - kinder_gesundheit: +10
+right:
+  label: "Gemeinsam einen anderen Spielplatz suchen"
+  effects:
+    - kinder_glueck: +8
+    - eltern_nerven: -5
+    - kinder_gesundheit: +5

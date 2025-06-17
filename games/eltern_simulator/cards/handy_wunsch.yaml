@@ -1,0 +1,17 @@
+id: handy_wunsch
+image: kid.png
+title: "Lisa möchte ein Handy"
+description: "Ihr 8-jähriges Kind: 'Alle in meiner Klasse haben schon ein Handy! Ich bin die Einzige ohne. Das ist total peinlich!' Ein Kinderhandy kostet 120€."
+left:
+  label: "Ein einfaches Kinderhandy kaufen"
+  effects:
+    - geld: -20
+    - kinder_glueck: +13
+    - eltern_nerven: -5
+    - kinder_gesundheit: -8
+right:
+  label: "Noch zu jung für ein Handy"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -8
+    - kinder_gesundheit: +12

@@ -1,0 +1,18 @@
+id: musikunterricht
+image: kid.png
+title: "Tom möchte Gitarre lernen"
+description: "Ihr Kind schwärmt: 'Ich will Gitarre lernen wie mein Lieblingssänger!' Musikschule kostet 80€/Monat, eine günstige Gitarre 150€. Alternative: YouTube-Tutorials."
+left:
+  label: "Professioneller Musikunterricht"
+  effects:
+    - geld: -15
+    - kinder_glueck: +12
+    - eltern_nerven: -5
+    - kinder_gesundheit: +8
+right:
+  label: "YouTube und eine günstige Gitarre"
+  effects:
+    - geld: -12
+    - kinder_glueck: +8
+    - eltern_nerven: +5
+    - kinder_gesundheit: +5

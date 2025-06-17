@@ -1,0 +1,16 @@
+id: schulweg_sicherheit
+image: kid.png
+title: "Ben will alleine zur Schule"
+description: "Ihr Kind möchte ab sofort alleine zur Schule gehen: 'Ich bin schon groß! Tom geht auch alleine.' Der Weg führt über eine belebte Straße."
+left:
+  label: "Ausprobieren - mit klaren Regeln"
+  effects:
+    - kinder_glueck: +12
+    - eltern_nerven: -15
+    - kinder_gesundheit: -10
+right:
+  label: "Noch zu gefährlich, weiter begleiten"
+  effects:
+    - kinder_glueck: -12
+    - eltern_nerven: -5
+    - kinder_gesundheit: +15

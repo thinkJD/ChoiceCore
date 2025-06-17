@@ -1,0 +1,16 @@
+id: aufraumen_zimmer
+image: kid.png
+title: "Maries Zimmer ist ein Chaos"
+description: "Das Kinderzimmer sieht aus wie ein Schlachtfeld. Spielzeug überall, schmutzige Kleidung auf dem Boden. 'Ich finde doch alles!' sagt Ihr Kind."
+left:
+  label: "Gemeinsam aufräumen und Ordnungssystem"
+  effects:
+    - kinder_glueck: -8
+    - eltern_nerven: -10
+    - kinder_gesundheit: +12
+right:
+  label: "Kind alleine aufräumen lassen"
+  effects:
+    - kinder_glueck: -15
+    - eltern_nerven: -5
+    - kinder_gesundheit: +8

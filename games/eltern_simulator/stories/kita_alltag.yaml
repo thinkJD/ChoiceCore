@@ -30,9 +30,9 @@ story_cards:
     left:
       label: "Vorsichtshalber zu Hause lassen"
       effects:
-        - eltern_nerven: -20
+        - eltern_nerven: -15
         - kinder_gesundheit: +15
-        - geld: -40
+        - geld: -18
     right:
       label: "Normal zur Kita bringen"
       effects:
@@ -69,8 +69,48 @@ story_cards:
     right:
       label: "Professionelle Beratung suchen"
       effects:
-        - geld: -80
+        - geld: -25
         - eltern_nerven: -10
         - kinder_gesundheit: +20
     probability: 0.30
     mix_in_next: 25
+  - id: kitafest_mitbringliste
+    image: kindergarten-teacher.png
+    title: "Frau Müller bittet um Mitbringsel"
+    description: "Für das Kitafest sollen Sie etwas mitbringen. Zur Auswahl stehen: aufwendiger Salat mit Dekoration oder einfach nur ein gekauftes Baguette."
+    left:
+      label: "Ja, aufwendiger Salat + Deko"
+      effects:
+        - geld: -12
+        - kinder_glueck: +15
+        - eltern_nerven: -20
+        - kinder_gesundheit: +10
+    right:
+      label: "Nur ein gekauftes Baguette"
+      effects:
+        - geld: -5
+        - kinder_glueck: +10
+        - eltern_nerven: +15
+        - kinder_gesundheit: +5
+    probability: 0.60
+    mix_in_next: 20
+  - id: personalausfall_kita
+    image: kindergarten-teacher.png
+    title: "Frau Schmidt informiert über Personalausfall"
+    description: "Wegen Personalausfall muss die Kita früher schließen. Sie müssen Ihre Arbeitszeit anpassen oder eine andere Lösung finden."
+    left:
+      label: "Arbeitszeit anpassen, irgendwie durchwurschteln"
+      effects:
+        - geld: -15
+        - kinder_glueck: +8
+        - eltern_nerven: -20
+        - kinder_gesundheit: +5
+    right:
+      label: "Beschweren und Ausweichlösung fordern"
+      effects:
+        - geld: -15
+        - kinder_glueck: +5
+        - eltern_nerven: -15
+        - kinder_gesundheit: +10
+    probability: 0.70
+    mix_in_next: 15

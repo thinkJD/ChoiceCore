@@ -14,7 +14,8 @@
       "Bash(find:*)",
       "Bash(rg:*)",
       "Bash(git commit:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(npm install:*)"
     ],
     "deny": []
   }

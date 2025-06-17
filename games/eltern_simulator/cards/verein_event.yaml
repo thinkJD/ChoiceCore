@@ -1,0 +1,17 @@
+id: verein_event
+image: placeholder.svg
+title: "Event im Sportverein"
+description: "Der Sportverein organisiert ein Familienfest mit Spielen und Grillabend. Die Teilnahme kostet pro Familie 25€, aber alle Freunde gehen hin."
+left:
+  label: "Dabei sein - Familie ist wichtig"
+  effects:
+    - geld: -15
+    - kinder_glueck: +12
+    - eltern_nerven: -8
+    - kinder_gesundheit: +12
+right:
+  label: "Zu teuer, wir machen was anderes"
+  effects:
+    - geld: +5
+    - kinder_glueck: -15
+    - eltern_nerven: +5

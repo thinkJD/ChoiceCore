@@ -25,28 +25,36 @@ load:
     - "cards/taschengeld_diskussion.yaml"
     - "cards/hausarbeit_verweigerung.yaml"
     - "cards/fernsehen_streit.yaml"
-    # Standalone supermarkt cards (main deck)
-    - "cards/darf_ich_suessigkeiten.yaml"
-    - "cards/darf_ich_dosenfisch.yaml"
-    - "cards/darf_ich_kuscheltier.yaml"
-    - "cards/darf_ich_ueberraschungsei.yaml"
-    - "cards/darf_ich_fertigkuchen.yaml"
-    - "cards/darf_ich_pudding.yaml"
+    # Standalone supermarkt cards moved to supermarkt_chaos story
     - "cards/kind_hilft_alter_frau.yaml"
     - "cards/kind_erinnert_einkauf.yaml"
-    # Standalone geburtstag cards (main deck)
-    - "cards/keine_startzeit.yaml"
+    # Standalone geburtstag cards moved to geburtstag_einladung story
     - "cards/ueberschneidung_arbeit.yaml"
-    - "cards/kostuem_gefaellt_nicht.yaml"
-    - "cards/wetterwarnung_gartenparty.yaml"
-    - "cards/gebeten_zu_helfen.yaml"
-    # Standalone kita cards (main deck)
-    - "cards/kitafest_mitbringliste.yaml"
-    - "cards/personalausfall_kita.yaml"
+    # Standalone kita cards moved to kita_alltag story
     # Money-positive cards for game balance
     - "cards/c_kindergeld_bonus.yaml"
     - "cards/c_flohmarkt_erfolg.yaml"
     - "cards/vc_smart_shopping.yaml"
+    # New main deck cards for extended gameplay
+    - "cards/freunde_eltern_anruf.yaml"
+    - "cards/verein_event.yaml"
+    - "cards/nicht_ins_bett.yaml"
+    - "cards/hausaufgaben_vergessen.yaml"
+    - "cards/neues_haustier.yaml"
+    - "cards/schlechtes_wetter_park.yaml"
+    - "cards/handy_wunsch.yaml"
+    - "cards/schulfest_helfen.yaml"
+    - "cards/bruder_streit.yaml"
+    - "cards/schulweg_sicherheit.yaml"
+    - "cards/aufraumen_zimmer.yaml"
+    - "cards/computer_zeit.yaml"
+    - "cards/zahnarzt_termin.yaml"
+    - "cards/oma_besuch.yaml"
+    - "cards/schwimmbad_besuch.yaml"
+    - "cards/musikunterricht.yaml"
+    - "cards/fremde_kinder.yaml"
+    - "cards/fahrrad_ohne_helm.yaml"
+    - "cards/verloren_im_kaufhaus.yaml"
     # Story cards (trigger + follow-ups) are now embedded in story YAML files
   boosters: []
   stories:

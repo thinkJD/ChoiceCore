@@ -1,0 +1,16 @@
+id: fahrrad_ohne_helm
+image: kid.png
+title: "David will ohne Helm fahren"
+description: "Ihr Kind beim Fahrradfahren: 'Der Helm ist doof und alle lachen mich aus! Niemand trägt Helm!' Sie wissen, dass Sicherheit wichtig ist."
+left:
+  label: "Sicherheit geht vor - Helm muss sein"
+  effects:
+    - kinder_glueck: -12
+    - eltern_nerven: -5
+    - kinder_gesundheit: +20
+right:
+  label: "Ohne Helm, aber nur kurze Strecken"
+  effects:
+    - kinder_glueck: +15
+    - eltern_nerven: -10
+    - kinder_gesundheit: -12

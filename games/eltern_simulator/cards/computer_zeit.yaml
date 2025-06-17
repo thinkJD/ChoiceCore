@@ -1,0 +1,16 @@
+id: computer_zeit
+image: kid.png
+title: "Felix will länger am Computer"
+description: "Die vereinbarte Computerzeit ist um, aber Ihr Kind fleht: 'Nur noch 10 Minuten! Ich bin fast am Ende des Levels!' Tränen stehen in den Augen."
+left:
+  label: "Ausnahmsweise 10 Minuten länger"
+  effects:
+    - kinder_glueck: +15
+    - eltern_nerven: +5
+    - kinder_gesundheit: -10
+right:
+  label: "Regel ist Regel - Computer aus"
+  effects:
+    - kinder_glueck: -12
+    - eltern_nerven: -8
+    - kinder_gesundheit: +12

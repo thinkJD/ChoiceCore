@@ -1,0 +1,16 @@
+id: schlechtes_wetter_park
+image: kid.png
+title: "Paul will trotz Regen raus"
+description: "Es regnet in Strömen, aber Ihr Kind möchte unbedingt auf den Spielplatz: 'Bitte! Wir können ja Regenjacken anziehen!' Sie haben eigentlich andere Pläne."
+left:
+  label: "Regenjacken an und ab zum Spielplatz"
+  effects:
+    - kinder_glueck: +18
+    - eltern_nerven: -8
+    - kinder_gesundheit: -5
+right:
+  label: "Heute bleiben wir drinnen"
+  effects:
+    - kinder_glueck: -12
+    - eltern_nerven: +5
+    - kinder_gesundheit: +8

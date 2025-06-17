@@ -1,0 +1,17 @@
+id: schulfest_helfen
+image: kindergarten-teacher.png
+title: "Frau Klein braucht Hilfe beim Schulfest"
+description: "Die Lehrerin fragt alle Eltern: 'Wer kann beim Schulfest helfen? Wir brauchen noch Leute für den Kuchenstand.' Es ist samstags von 10-16 Uhr."
+left:
+  label: "Klar, ich helfe beim Kuchenstand"
+  effects:
+    - geld: -5
+    - kinder_glueck: +15
+    - eltern_nerven: -15
+    - kinder_gesundheit: +5
+right:
+  label: "Leider keine Zeit am Samstag"
+  effects:
+    - kinder_glueck: -8
+    - eltern_nerven: +10
+    - geld: +5

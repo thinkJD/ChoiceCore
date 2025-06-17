@@ -1,0 +1,17 @@
+id: zahnarzt_termin
+image: kid.png
+title: "Zahnarzttermin steht an"
+description: "Die halbjährliche Kontrolle beim Zahnarzt. Ihr Kind hat Angst: 'Ich will nicht! Was wenn ich ein Loch habe?' Die Praxis bietet Narkose für 80€ extra an."
+left:
+  label: "Mit Narkose - weniger Stress für alle"
+  effects:
+    - geld: -15
+    - kinder_glueck: +10
+    - eltern_nerven: +8
+    - kinder_gesundheit: +10
+right:
+  label: "Normal durchstehen - ist machbar"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -12
+    - kinder_gesundheit: +15

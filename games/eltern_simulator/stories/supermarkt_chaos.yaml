@@ -17,7 +17,7 @@ trigger_cards:
     right:
       label: "Babysitter organisieren"
       effects:
-        - geld: -25
+        - geld: -15
         - eltern_nerven: +10
       reject_story: supermarkt_chaos
 story_cards:
@@ -45,7 +45,7 @@ story_cards:
       label: "Gummibärchen kaufen - heute nicht diskutieren"
       effects:
         - geld: -5
-        - kinder_glueck: +20
+        - kinder_glueck: +12
         - eltern_nerven: +5
     right:
       label: "Standhaft bleiben"
@@ -81,7 +81,116 @@ story_cards:
       label: "Zusammen rubbeln"
       effects:
         - geld: +10
-        - kinder_glueck: +20
+        - kinder_glueck: +12
         - eltern_nerven: -5
     probability: 0.25
     mix_in_next: 30
+  - id: darf_ich_suessigkeiten
+    image: kid.png
+    title: "Emma möchte Süßigkeiten"
+    description: "Ihr Kind fragt höflich: 'Darf ich bitte diese Süßigkeiten haben?' und hält eine Packung Gummibärchen hoch."
+    left:
+      label: "Ja, eine Kleinigkeit"
+      effects:
+        - geld: -5
+        - kinder_glueck: +15
+        - eltern_nerven: +5
+        - kinder_gesundheit: -3
+    right:
+      label: "Nein, heute nicht"
+      effects:
+        - kinder_glueck: -10
+        - eltern_nerven: -5
+        - kinder_gesundheit: +8
+    probability: 0.85
+    mix_in_next: 15
+  - id: darf_ich_kuscheltier
+    image: kid.png
+    title: "Mia sieht ein Kuscheltier"
+    description: "Im Supermarkt gibt es eine kleine Auswahl an Kuscheltieren. Ihr Kind umarmt einen kleinen Teddybär: 'Der ist so süß! Darf ich den haben?'"
+    left:
+      label: "Okay, eins darf mit"
+      effects:
+        - geld: -12
+        - kinder_glueck: +15
+        - eltern_nerven: +5
+    right:
+      label: "Nein, wir haben genug Kuscheltiere"
+      effects:
+        - kinder_glueck: -15
+        - eltern_nerven: -10
+    probability: 0.60
+    mix_in_next: 20
+  - id: darf_ich_ueberraschungsei
+    image: kid.png
+    description: "An der Kasse entdeckt Ihr Kind die Überraschungseier: 'Mama/Papa, darf ich bitte eins haben? Nur eins!' Die Kassiererin wartet bereits."
+    left:
+      label: "Na gut, eins geht"
+      effects:
+        - geld: -3
+        - kinder_glueck: +15
+        - eltern_nerven: +5
+        - kinder_gesundheit: -3
+    right:
+      label: "Heute nicht, Schatz"
+      effects:
+        - kinder_glueck: -12
+        - eltern_nerven: -8
+        - kinder_gesundheit: +5
+    probability: 0.90
+    mix_in_next: 10
+  - id: darf_ich_pudding
+    image: kid.png
+    description: "In der Kühltheke entdeckt Ihr Kind glitzernden Kinderpudding: 'Ohhhh, guck mal! Glitzerpudding! Den MUSS ich haben!'"
+    left:
+      label: "Einmal Glitzerpudding, bitte"
+      effects:
+        - geld: -7
+        - kinder_glueck: +12
+        - eltern_nerven: +8
+        - kinder_gesundheit: -5
+    right:
+      label: "Nein, wir haben zuhause was"
+      effects:
+        - kinder_glueck: -15
+        - eltern_nerven: -10
+        - kinder_gesundheit: +8
+    probability: 0.70
+    mix_in_next: 18
+  - id: darf_ich_fertigkuchen
+    image: kid.png
+    description: "Ihr Kind zeigt begeistert auf einen bunten Fertigkuchen mit viel Zuckerguss: 'Wow! Den möchte ich haben! Der sieht so lecker aus!'"
+    left:
+      label: "Okay, aber nur diesmal"
+      effects:
+        - geld: -8
+        - kinder_glueck: +12
+        - eltern_nerven: +5
+        - kinder_gesundheit: -5
+    right:
+      label: "Nein, das ist nur Zucker"
+      effects:
+        - geld: +3
+        - kinder_glueck: -10
+        - eltern_nerven: -8
+        - kinder_gesundheit: +15
+    probability: 0.75
+    mix_in_next: 25
+  - id: darf_ich_dosenfisch
+    image: kid.png
+    description: "Ihr Kind zeigt auf eine Dose Thunfisch und fragt: 'Darf ich das haben?' Sie sind verwirrt - normalerweise mag Ihr Kind keinen Fisch."
+    left:
+      label: "Ähm... okay?"
+      effects:
+        - geld: -4
+        - kinder_glueck: +10
+        - eltern_nerven: -5
+        - kinder_gesundheit: +15
+    right:
+      label: "Lieber nicht, Fisch im Sommer..."
+      effects:
+        - kinder_glueck: -8
+        - eltern_nerven: +10
+        - kinder_gesundheit: +5
+    probability: 0.40
+    mix_in_next: 35

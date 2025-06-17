@@ -1,0 +1,17 @@
+id: oma_besuch
+image: placeholder.svg
+title: "Spontaner Besuch bei Oma"
+description: "Oma ruft an: 'Ich habe Kuchen gebacken! Kommt ihr vorbei?' Ihr Kind ist begeistert, aber Sie haben eigentlich Hausarbeit geplant."
+left:
+  label: "Oma freut sich - wir kommen!"
+  effects:
+    - geld: -8
+    - kinder_glueck: +18
+    - eltern_nerven: +5
+    - kinder_gesundheit: +8
+right:
+  label: "Heute nicht, wir haben viel zu tun"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -5
+    - geld: +5

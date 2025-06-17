@@ -1,0 +1,17 @@
+id: freunde_eltern_anruf
+image: chat-group.png
+title: "Anruf von Tims Eltern"
+description: "Die Eltern von Tims bestem Freund rufen an: 'Können sich die Kinder heute Nachmittag zum Spielen treffen? Wir würden gerne die Familien näher kennenlernen.'"
+left:
+  label: "Ja, gerne! Wir kommen vorbei"
+  effects:
+    - geld: -8
+    - kinder_glueck: +20
+    - eltern_nerven: -5
+    - kinder_gesundheit: +10
+right:
+  label: "Heute leider nicht, anderes Mal"
+  effects:
+    - kinder_glueck: -12
+    - eltern_nerven: +10
+    - geld: +5

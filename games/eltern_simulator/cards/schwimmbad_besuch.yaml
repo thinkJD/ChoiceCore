@@ -1,0 +1,18 @@
+id: schwimmbad_besuch
+image: kid.png
+title: "Julia will ins Schwimmbad"
+description: "30°C im Schatten! Ihr Kind: 'Können wir ins Freibad? Bitte, bitte!' Das Freibad ist überfüllt, Eintritt 12€ pro Person und Parkplätze sind rar."
+left:
+  label: "Freibad-Abenteuer trotz Chaos"
+  effects:
+    - geld: -15
+    - kinder_glueck: +13
+    - eltern_nerven: -12
+    - kinder_gesundheit: +15
+right:
+  label: "Planschbecken im Garten aufstellen"
+  effects:
+    - geld: -8
+    - kinder_glueck: +8
+    - eltern_nerven: +5
+    - kinder_gesundheit: +10

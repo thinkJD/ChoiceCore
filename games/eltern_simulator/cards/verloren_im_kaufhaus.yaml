@@ -1,0 +1,16 @@
+id: verloren_im_kaufhaus
+image: kid.png
+title: "Kind im Kaufhaus verschwunden"
+description: "Panik! Sie drehen sich um und Ihr Kind ist weg. Nach 3 Minuten finden Sie es am Spielzeugstand. 'Ich wollte nur kurz schauen!' sagt es unschuldig."
+left:
+  label: "Ruhig erklären warum das gefährlich war"
+  effects:
+    - kinder_glueck: +5
+    - eltern_nerven: -8
+    - kinder_gesundheit: +12
+right:
+  label: "Deutlich schimpfen - das war fahrlässig"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -5
+    - kinder_gesundheit: +15

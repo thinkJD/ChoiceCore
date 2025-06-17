@@ -66,7 +66,7 @@ story_cards:
     right:
       label: "Schnell etwas Schönes aussuchen"
       effects:
-        - geld: -30
+        - geld: -18
         - eltern_nerven: -5
     probability: 0.85
     mix_in_next: 15
@@ -76,9 +76,9 @@ story_cards:
     left:
       label: "Notfall-Einkauf im Spielzeugladen"
       effects:
-        - geld: -45
+        - geld: -20
         - eltern_nerven: -15
-        - kinder_glueck: +25
+        - kinder_glueck: +15
     right:
       label: "DIY-Kostüm basteln"
       effects:
@@ -103,3 +103,72 @@ story_cards:
         - eltern_nerven: -15
     probability: 0.35
     mix_in_next: 25
+  - id: gebeten_zu_helfen
+    image: chat-group.png
+    description: "Die Geburtstags-Mama fragt in der WhatsApp-Gruppe: 'Kann jemand noch einen Kuchen mitbringen? Ich schaffe das alles nicht.' Sie haben wenig Zeit, aber..."
+    left:
+      label: "Okay, ich bring Kuchen mit"
+      effects:
+        - geld: -15
+        - kinder_glueck: +12
+        - eltern_nerven: -15
+        - kinder_gesundheit: +5
+    right:
+      label: "Keine Zeit, höflich ablehnen"
+      effects:
+        - kinder_glueck: +5
+        - eltern_nerven: +15
+    probability: 0.75
+    mix_in_next: 10
+  - id: keine_startzeit
+    image: chat-group.png
+    description: "Auf der Einladung steht kein Datum und keine Uhrzeit. In der WhatsApp-Gruppe wird darüber diskutiert, aber Sie haben es verpasst. Die Party ist morgen."
+    left:
+      label: "In der Gruppe nachfragen (peinlich!)"
+      effects:
+        - kinder_glueck: +12
+        - eltern_nerven: -15
+    right:
+      label: "Raten und hoffen, dass es passt"
+      effects:
+        - kinder_glueck: +5
+        - eltern_nerven: -30
+        - kinder_gesundheit: -5
+    probability: 0.60
+    mix_in_next: 8
+  - id: wetterwarnung_gartenparty
+    image: chat-group.png
+    description: "Es kommt eine Sturmwarnung und die geplante Gartenparty steht auf der Kippe. In der WhatsApp-Gruppe herrscht Panik. Was ist Ihr Vorschlag?"
+    left:
+      label: "Vorschlagen, alles ins Wohnzimmer zu verlegen"
+      effects:
+        - kinder_glueck: +12
+        - eltern_nerven: -12
+        - kinder_gesundheit: +10
+    right:
+      label: "Stumm schalten und abwarten"
+      effects:
+        - kinder_glueck: +5
+        - eltern_nerven: -25
+        - kinder_gesundheit: -5
+    probability: 0.40
+    mix_in_next: 22
+  - id: kostuem_gefaellt_nicht
+    image: kid.png
+    title: "Emma gefällt ihr Kostüm nicht"
+    description: "Am Morgen der Party gefällt Ihrem Kind das Kostüm plötzlich nicht mehr: 'Das ist doof! Ich will als Prinzessin gehen!' Die Party beginnt in zwei Stunden."
+    left:
+      label: "Ein neues Kostüm kaufen"
+      effects:
+        - geld: -12
+        - kinder_glueck: +15
+        - eltern_nerven: -12
+    right:
+      label: "Beim alten Kostüm bleiben"
+      effects:
+        - geld: +5
+        - kinder_glueck: -15
+        - eltern_nerven: -10
+        - kinder_gesundheit: +15
+    probability: 0.55
+    mix_in_next: 12

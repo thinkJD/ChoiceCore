@@ -1,0 +1,17 @@
+id: hausaufgaben_vergessen
+image: kid.png
+title: "Max hat Hausaufgaben vergessen"
+description: "Sonntagabend um 19 Uhr: 'Mama, ich hab vergessen, dass ich für morgen ein Referat halten muss!' Das Material müsste noch besorgt werden."
+left:
+  label: "Schnell zum Laden, Material besorgen"
+  effects:
+    - geld: -15
+    - kinder_glueck: +15
+    - eltern_nerven: -20
+    - kinder_gesundheit: -5
+right:
+  label: "Eigenverantwortung lernen - ohne Referat"
+  effects:
+    - kinder_glueck: -18
+    - eltern_nerven: -10
+    - kinder_gesundheit: +10

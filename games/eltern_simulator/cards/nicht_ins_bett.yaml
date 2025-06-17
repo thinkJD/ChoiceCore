@@ -1,0 +1,16 @@
+id: nicht_ins_bett
+image: kid.png
+title: "Lena will nicht ins Bett"
+description: "21:00 Uhr - Ihr Kind weigert sich kategorisch ins Bett zu gehen. 'Ich bin noch gar nicht müde! Nur noch 10 Minuten!' Morgen ist ein wichtiger Tag."
+left:
+  label: "Noch 10 Minuten, dann wirklich Schluss"
+  effects:
+    - kinder_glueck: +12
+    - eltern_nerven: -5
+    - kinder_gesundheit: -8
+right:
+  label: "Nein, jetzt ist Schlafenszeit!"
+  effects:
+    - kinder_glueck: -10
+    - eltern_nerven: -15
+    - kinder_gesundheit: +15
