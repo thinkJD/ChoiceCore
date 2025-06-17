@@ -1,3 +1,18 @@
 .aider*
 .env
 .claude/
+
+# Node modules
+node_modules/
+
+# Monte Carlo simulation results and test data
+tools/*.json
+tools/*.html
+*.json
+results.json
+*_results.json
+*_analysis.json
+*_test.json
+baseline_analysis.json
+rebalanced_test.json
+balance_test.json
