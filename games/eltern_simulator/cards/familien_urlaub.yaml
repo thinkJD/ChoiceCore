@@ -4,13 +4,13 @@ description: "Die Sommerferien stehen vor der Tür. Ihr Kind träumt von einem t
 left:
   label: "Disney World - Träume sollte man erfüllen"
   effects:
-    - geld: -300
-    - kinder_glueck: +40
-    - eltern_nerven: -20
+    - geld: -35
+    - kinder_glueck: +25
+    - eltern_nerven: -15
 right:
   label: "Camping am See - günstig und entspannt"
   effects:
-    - geld: -50
-    - kinder_glueck: +15
-    - eltern_nerven: +15
-    - kinder_gesundheit: +10
+    - geld: -15
+    - kinder_glueck: +10
+    - eltern_nerven: +20
+    - kinder_gesundheit: +15

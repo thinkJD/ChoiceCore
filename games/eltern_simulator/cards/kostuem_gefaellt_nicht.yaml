@@ -4,13 +4,13 @@ description: "Am Morgen der Party gefällt Ihrem Kind das Kostüm plötzlich nic
 left:
   label: "Ein neues Kostüm kaufen"
   effects:
-    - geld: -35
-    - kinder_glueck: +30
-    - eltern_nerven: -25
+    - geld: -20
+    - kinder_glueck: +25
+    - eltern_nerven: -15
 right:
   label: "Beim alten Kostüm bleiben"
   effects:
-    - kinder_glueck: -25
-    - eltern_nerven: -20
-    - geld: +0
-    - kinder_gesundheit: +5
+    - geld: +5
+    - kinder_glueck: -15
+    - eltern_nerven: -10
+    - kinder_gesundheit: +15

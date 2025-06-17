@@ -43,6 +43,10 @@ load:
     # Standalone kita cards (main deck)
     - "cards/kitafest_mitbringliste.yaml"
     - "cards/personalausfall_kita.yaml"
+    # Money-positive cards for game balance
+    - "cards/c_kindergeld_bonus.yaml"
+    - "cards/c_flohmarkt_erfolg.yaml"
+    - "cards/vc_smart_shopping.yaml"
     # Story cards (trigger + follow-ups) are now embedded in story YAML files
   boosters: []
   stories:

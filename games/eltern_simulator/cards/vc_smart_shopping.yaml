@@ -1,0 +1,15 @@
+id: vc_smart_shopping
+image: placeholder.svg
+description: "Beim Einkaufen entdecken Sie ein tolles Angebot: Alle Lieblings-Snacks Ihres Kindes sind heute 50% reduziert. Zudem haben Sie Gutscheine dabei."
+left:
+  label: "Großeinkauf mit den Angeboten machen"
+  effects:
+    - geld: +10
+    - kinder_glueck: +15
+    - eltern_nerven: +5
+right:
+  label: "Nur das Nötigste kaufen wie geplant"
+  effects:
+    - geld: +5
+    - eltern_nerven: +10
+    - kinder_gesundheit: +10

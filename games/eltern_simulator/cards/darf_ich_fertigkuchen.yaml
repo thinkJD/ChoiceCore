@@ -4,13 +4,14 @@ description: "Ihr Kind zeigt begeistert auf einen bunten Fertigkuchen mit viel Z
 left:
   label: "Okay, aber nur diesmal"
   effects:
-    - geld: -15
-    - kinder_glueck: +25
+    - geld: -8
+    - kinder_glueck: +20
     - eltern_nerven: +5
-    - kinder_gesundheit: -10
+    - kinder_gesundheit: -5
 right:
   label: "Nein, das ist nur Zucker"
   effects:
-    - kinder_glueck: -18
-    - eltern_nerven: -12
-    - kinder_gesundheit: +12
+    - geld: +3
+    - kinder_glueck: -10
+    - eltern_nerven: -8
+    - kinder_gesundheit: +15

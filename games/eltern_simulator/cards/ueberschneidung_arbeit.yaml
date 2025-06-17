@@ -4,13 +4,13 @@ description: "Die Geburtstagsparty ist genau dann, wenn Sie eigentlich arbeiten 
 left:
   label: "Kurzfristig Urlaub nehmen"
   effects:
-    - geld: -100
-    - kinder_glueck: +30
-    - eltern_nerven: -20
+    - geld: -30
+    - kinder_glueck: +25
+    - eltern_nerven: -15
 right:
   label: "Andere Betreuung organisieren"
   effects:
-    - geld: -50
-    - kinder_glueck: +15
-    - eltern_nerven: -25
-    - kinder_gesundheit: +5
+    - geld: -15
+    - kinder_glueck: +10
+    - eltern_nerven: -20
+    - kinder_gesundheit: +10

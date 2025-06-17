@@ -4,14 +4,14 @@ description: "Wegen Personalausfall muss die Kita früher schließen. Sie müsse
 left:
   label: "Arbeitszeit anpassen, irgendwie durchwurschteln"
   effects:
-    - geld: -80
-    - kinder_glueck: +15
-    - eltern_nerven: -30
-    - kinder_gesundheit: +10
+    - geld: -25
+    - kinder_glueck: +10
+    - eltern_nerven: -25
+    - kinder_gesundheit: +5
 right:
   label: "Beschweren und Ausweichlösung fordern"
   effects:
-    - geld: -40
-    - kinder_glueck: +10
-    - eltern_nerven: -20
-    - kinder_gesundheit: +5
+    - geld: -15
+    - kinder_glueck: +5
+    - eltern_nerven: -15
+    - kinder_gesundheit: +10
