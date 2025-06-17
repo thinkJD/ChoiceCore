@@ -240,11 +240,40 @@ The final architecture provides:
 
 ## Important Rules
 
-### 1. **ID Naming**
+### 1. **ID Naming & Card Classification**
 - Use lowercase letters and underscores only
 - Make it descriptive: `schulzeugnis_schlecht`, `geburtstag_planung`
 - Must be unique across all cards and stories
 - Consider namespace for story cards: `story_name_card1`
+
+#### Deck Inventory & Classification System
+
+**Tag each card by its total effect magnitude and rarity using filename prefixes:**
+
+**Filename Format**: `[rarity]_[descriptive_name].yaml`
+
+**Rarity Categories**:
+- **`vc_`** = Very Common (80-90% appearance): Daily situations, minor choices
+- **`c_`** = Common (60-75% appearance): Regular parenting challenges  
+- **`m_`** = Moderate (40-60% appearance): Occasional complex decisions
+- **`u_`** = Uncommon (25-40% appearance): Challenging or special situations
+- **`r_`** = Rare (10-25% appearance): Major events, emergencies, lucky breaks
+
+**Examples**:
+- `vc_morgen_routine.yaml` - Daily morning stress (small effects)
+- `c_hausaufgaben_streit.yaml` - Homework conflicts (medium effects)
+- `m_geburtstag_planung.yaml` - Birthday party planning (higher effects)
+- `u_kind_krank_notfall.yaml` - Emergency medical situation (large effects)
+- `r_grosseltern_geschenk.yaml` - Unexpected inheritance (major positive effects)
+
+**Effect Distribution Guidelines**:
+- **Very Common**: Should make up 30-40% of deck
+- **Common**: Should make up 25-35% of deck
+- **Moderate**: Should make up 15-25% of deck  
+- **Uncommon**: Should make up 10-15% of deck
+- **Rare**: Should make up 5-10% of deck
+
+This classification helps ensure proper game balance and prevents too many high-impact cards from appearing early in the game.
 
 ### 2. **Image Paths**
 - Use relative paths: `assets/images/placeholder.svg`
@@ -267,17 +296,38 @@ The final architecture provides:
 
 ### 5. **Effects Balance**
 - **Every choice must affect at least 2 powers**
-- Total effect magnitude should be 20-60 points across all powers
 - Create meaningful trade-offs between choices
-- **Money Effects:**
-  - Expensive choices: -50 to -300 geld
-  - Normal purchases: -10 to -50 geld
-  - Major financial impact: -100 to -200 geld
-- **Other Powers:**
-  - Small impacts: +/-5 to +/-15
-  - Medium impacts: +/-20 to +/-30
-  - Large impacts: +/-40 to +/-50
 - **Balance Principle**: High cost should provide significant benefit
+
+#### Game Balance Guidelines
+
+**Target Game Length**: 10+ cards average (not 3-4 cards!)
+
+**Effect Magnitude by Card Rarity**:
+- **Very Common (80-90% appearance)**: 15-25 total effect points
+- **Common (60-75% appearance)**: 20-35 total effect points  
+- **Moderate (40-60% appearance)**: 30-45 total effect points
+- **Uncommon (25-40% appearance)**: 40-55 total effect points
+- **Rare (10-25% appearance)**: 50-70 total effect points
+
+**Money Effects (0-100 range)**:
+- **Small purchases**: -3 to -8 geld (candy, small toys)
+- **Medium purchases**: -10 to -20 geld (clothes, activities)
+- **Large purchases**: -25 to -40 geld (electronics, trips)
+- **Major expenses**: -50 to -70 geld (emergency, rare events)
+- **Money gains**: +5 to +25 geld (gifts, savings, bonuses)
+
+**Other Powers (0-100 range)**:
+- **Small impacts**: +/-5 to +/-15
+- **Medium impacts**: +/-15 to +/-25  
+- **Large impacts**: +/-25 to +/-35
+- **Major impacts**: +/-35 to +/-50 (rare cards only)
+
+**Critical Balance Rules**:
+1. **Money Economy**: Include positive money effects (25-30% of cards)
+2. **Power Recovery**: Each power needs both positive and negative cards
+3. **Sustainable Gameplay**: Average effect per card should allow 10+ card games
+4. **Escalation Control**: Limit cards that can cause immediate game over
 
 ### 6. **Realistic Scenarios for Parenting Game**
 Focus on authentic parenting situations:
@@ -479,6 +529,26 @@ Before submitting content, verify:
 - [ ] ✅ Complexity appropriate for target audience
 
 ## Testing and Validation
+
+### Game Balance Testing
+Use the Monte Carlo simulation tools to validate game balance:
+```bash
+# Run simulation analysis
+cd tools
+node monte_carlo_simulation.js eltern_simulator 2000 analysis.json
+
+# Generate visualization  
+node trajectory_visualizer.js analysis.json report.html
+
+# Extended analysis (1 hour)
+node run_extended_analysis.js eltern_simulator 60
+```
+
+**Target Metrics**:
+- **Average game length**: 8-12 cards (not 3-4!)
+- **Game over distribution**: No single reason >40% 
+- **Power balance**: All powers should cause game over ~20-30% each
+- **Money sustainability**: Positive money effects in 25-30% of cards
 
 ### Automated Testing
 The engine includes comprehensive testing:
